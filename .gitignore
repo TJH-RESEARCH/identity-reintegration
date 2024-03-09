@@ -50,3 +50,6 @@ rsconnect/
 
 # Data
 /data
+
+# Output
+/output
