@@ -11,8 +11,9 @@ contributors:
 - licensing
 - plot-robustness.R
 - save sankey plots - I think screenshots or markdown is needed
+- data sharing
  
-# Replcation Code: Is Military Identity Helpful or Hurtful in Civilian Life? 
+# Replication Code: Is Military Identity Helpful or Hurtful in Civilian Life? 
 
 
 ## Overview
@@ -61,10 +62,10 @@ The data analysis scripts are ordered in seven stages: desciptives, graphic mode
 | src/02_analysis/c-examine-measures    | cfa-wis.R                         | Calculates and saves Cronbach's alpha for the SCC.      |
 | src/02_analysis/d-create-groups       | hierarchical-clsutering.R         | Analyzes and creates hierarchical clustering groups.    |
 | src/02_analysis/d-create-groups       | kmeans.R                          | Analyzes and creates k-means clustering groups.         |
-| src/02_analysis/d-create-groups       | lpa.R                             | Analyzes and creates Latent Profile Analysis groups.    |
 | src/02_analysis/e-compare-groups      | compare-group-size.R              | Analyzes and creates hierarchical clustering groups.    |
+| src/02_analysis/e-compare-groups      | sankey-k3-k2.R                    | Creates a Sankey plot.                                  |
 | src/02_analysis/e-compare-groups      | sankey-k3-h2.R                    | Creates a Sankey plot.                                  |
-| src/02_analysis/e-compare-groups      | sankey-k3-lpa-k2.R                | Creates a Sankey plot.                                  |
+| src/02_analysis/e-compare-groups      | sankey-h3-h2.R                    | Creates a Sankey plot.                                  |
 | src/02_analysis/f-describe-groups     | differences-demographics.R        | Compares the latent groups by demographics.             |
 | src/02_analysis/f-describe-groups     | differences-identity.R            | Compares the latent groups by identity variables.       |
 | src/02_analysis/f-describe-groups     | differences-military-experiences.R| Compares the latent groups by military experiences.     |

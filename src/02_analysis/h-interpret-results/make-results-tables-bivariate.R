@@ -6,12 +6,12 @@ source(here::here('src/01_config/functions/function-append-results.R'))
 table <- 
   texreg::texreg(
     list(
-      coeftest_mcarm_2,
-      coeftest_civilians_2,
-      coeftest_help_seeking_2,
-      coeftest_purpose_2,
-      coeftest_resent_2,
-      coeftest_regiment_2
+      coeftest_mcarm_1,
+      coeftest_civilians_1,
+      coeftest_help_seeking_1,
+      coeftest_purpose_1,
+      coeftest_resent_1,
+      coeftest_regiment_1
       
     ), 
     stars = 0,
@@ -40,12 +40,12 @@ table <-
 
 gof_stats <- texreg::texreg(
   list(
-    model_mcarm_2,
-    model_civilians_2,
-    model_help_seeking_2,
-    model_purpose_2,
-    model_resent_2,
-    model_regiment_2
+    model_mcarm_1,
+    model_civilians_1,
+    model_help_seeking_1,
+    model_purpose_1,
+    model_resent_1,
+    model_regiment_1
   ), 
   stars = 0,
   custom.note = 'Standard error in parentheses. Bold indicates p less than .05.',
@@ -55,10 +55,11 @@ gof_stats <- texreg::texreg(
 )
 
 
-x = c(read_lines(table)[1:26], read_lines(gof_stats, skip = 26))
+x = c(read_lines(table)[1:14], read_lines(gof_stats, skip = 14))
 # Write -------------------------------------------------------------------
 write_lines(x = x,
-            file = paste0(here::here(), '/output/tables/purpose-tables-', analysis, '.txt'))
+            file = paste0(here::here(), '/output/tables/results-tables-', analysis, '.txt'))
 
 append_results_tables(x)
 rm(x)
+  

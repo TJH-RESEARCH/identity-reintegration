@@ -110,3 +110,4 @@ t.test(wis_skills_total ~ latent_group, data =
 t.test(wis_skills_total ~ latent_group, data =
          data %>% filter(latent_group != 'Higher ID')
 ) %>% broom::tidy()
+
