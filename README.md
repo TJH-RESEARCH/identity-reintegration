@@ -6,24 +6,20 @@ contributors:
 # To Do
 
 - Add the Overleaf output and latex to /Doc
-- Add the survey instructions, items, and logic to /Doc
-- Ensure themes are consistent across project
 - licensing
-- plot-robustness.R
-- save sankey plots - I think screenshots or markdown is needed
 - data sharing
  
-# Replication Code: Is Military Identity Helpful or Hurtful in Civilian Life? 
+# Replication Code: Comparing Reintegration by Military Identity: Military Identity and Post-Service Adjustment
 
 
 ## Overview
 
-The code in R Project allows for the replication of tables, figures, stats, graphs, and results used in Is Military Identity Helpful or Hurtful in Civilian Life? Comparing Reintegration and Adjustment by Latent Groups of Military Identity
+The code in R Project allows for the replication of tables, figures, stats, graphs, and results used in Comparing Reintegration by Military Identity: Military Identity and Post-Service Adjustment.
 
 
 ## Data Availability and Provenance
 
-This paper uses original data collected by the first author as part of a **survey** administered in 2023 to United States military veterans (Hodges, 2023). Original survey data is available upon reasonable request. A processed copy of the data is included with this replication. 
+This paper uses original data collected by the first author as part of a **survey** administered in 2023 to United States military veterans (Hodges, 2023). Original survey data is available upon reasonable request.
 
 
 ## Licensing
@@ -60,33 +56,26 @@ The data analysis scripts are ordered in seven stages: desciptives, graphic mode
 | src/02_analysis/b-graphic-modelling   | draw-dags.R                       | Plot directed acyclical graphs and adjustment sets.     |
 | src/02_analysis/c-examine-measures    | cfa-mcarm.R                       | Calculates and saves Cronbach's alpha for the MIOS.     |
 | src/02_analysis/c-examine-measures    | cfa-wis.R                         | Calculates and saves Cronbach's alpha for the SCC.      |
-| src/02_analysis/d-create-groups       | hierarchical-clsutering.R         | Analyzes and creates hierarchical clustering groups.    |
 | src/02_analysis/d-create-groups       | kmeans.R                          | Analyzes and creates k-means clustering groups.         |
-| src/02_analysis/e-compare-groups      | compare-group-size.R              | Analyzes and creates hierarchical clustering groups.    |
-| src/02_analysis/e-compare-groups      | sankey-k3-k2.R                    | Creates a Sankey plot.                                  |
-| src/02_analysis/e-compare-groups      | sankey-k3-h2.R                    | Creates a Sankey plot.                                  |
-| src/02_analysis/e-compare-groups      | sankey-h3-h2.R                    | Creates a Sankey plot.                                  |
-| src/02_analysis/f-describe-groups     | differences-demographics.R        | Compares the latent groups by demographics.             |
-| src/02_analysis/f-describe-groups     | differences-identity.R            | Compares the latent groups by identity variables.       |
-| src/02_analysis/f-describe-groups     | differences-military-experiences.R| Compares the latent groups by military experiences.     |
-| src/02_analysis/f-describe-groups     | differences-reintegration.R       | Compares the latent groups by reintegration.            |
-| src/02_analysis/g-examine-variables   | descriptive-categorical.R         | Prints summary table/latex for the categorical variables * |
-| src/02_analysis/g-examine-variables   | descriptive-continuous.R          | Prints summary table/latex for the continuous variables |
-| src/02_analysis/g-examine-variables   | plot-hypotheses.R                 | Creates bivariate plots of primary variables.           |
-| src/02_analysis/g-examine-variables   | plot-pairs.R                      | Creates paired plots of continuous variables.           |
-| src/02_analysis/g-examine-variables   | plot-reintegration.R              | Creates histogram and boxplot of reintegration.         |
-| src/02_analysis/h-modelling           | fit-models.R                      | Specify and fits regression models to data.             |
-| src/02_analysis/h-modelling           | model-diagnostics.R               | Creates diagnostic plots for regression models.         |
-| src/02_analysis/h-modelling           | calculate-robust-se.R             | Calculates Huber-White standard errors & runs coeftest. |
-| src/02_analysis/i-interpret-results   | make-results-tables-mcarm.R       | Creates latex tables of regression results.             |
-| src/02_analysis/i-interpret-results   | make-results-tables-purpose.R     | Creates latex tables of regression results.             |
-| src/02_analysis/i-interpret-results   | make-results-tables-regiment.R    | Creates latex tables of regression results.             |
-| src/02_analysis/i-interpret-results   | make-results-tables-resent.R      | Creates latex tables of regression results.             |
-| src/02_analysis/i-interpret-results   | make-results-tables-help-seeking.R| Creates latex tables of regression results.             |
-| src/02_analysis/i-interpret-results   | make-results-tables-civilians.R   | Creates latex tables of regression results.             |
-| src/02_analysis/i-interpret-results   | visualize-coefficients.R          | Plots coefficients and standard errors.                 |
-| src/02_analysis/i-interpret-results   | visualize-profiles-reintegration.R| Plots group profiles by reintegration measures.         |
-| src/02_analysis/g-robustness          | plot-robustness.R                 | Creates visualizations of robustness results.           |
+| src/02_analysis/e-describe-groups     | compare-group-size.R              | Analyzes and creates hierarchical clustering groups.    |
+| src/02_analysis/e-describe-groups     | differences-identity.R            | Compares the latent groups by identity variables.       |
+| src/02_analysis/e-describe-groups     | differences-military-experiences.R| Compares the latent groups by military experiences.     |
+| src/02_analysis/e-describe-groups     | differences-reintegration.R       | Compares the latent groups by reintegration.            |
+| src/02_analysis/e-describe-groups     | visualize-profiles.R              | Plots differences in clusters by military identity.     |
+| src/02_analysis/f-examine-variables   | descriptive-categorical.R         | Prints summary table/latex for the categorical variables * |
+| src/02_analysis/f-examine-variables   | descriptive-continuous.R          | Prints summary table/latex for the continuous variables |
+| src/02_analysis/f-examine-variables   | plot-hypotheses.R                 | Creates bivariate plots of primary variables.           |
+| src/02_analysis/f-examine-variables   | plot-pairs.R                      | Creates paired plots of continuous variables.           |
+| src/02_analysis/f-examine-variables   | plot-reintegration.R              | Creates histogram and boxplot of reintegration.         |
+| src/02_analysis/f-examine-variables   | bivariate-plot.R                  | Creates paired plots of variables.                      |
+| src/02_analysis/g-modelling           | fit-models.R                      | Specify and fits regression models to data.             |
+| src/02_analysis/g-modelling           | model-diagnostics.R               | Creates diagnostic plots for regression models.         |
+| src/02_analysis/g-modelling           | calculate-robust-se.R             | Calculates Huber-White standard errors & runs coeftest. |
+| src/02_analysis/h-interpret-results   | make-results-tables-mcarm.R       | Creates latex tables of regression results.             |
+| src/02_analysis/h-interpret-results   | make-results-tables-full.R        | Creates latex tables of regression results.             |
+| src/02_analysis/h-interpret-results   | make-results-tables-bivariate.R   | Creates latex tables of regression results.             |
+| src/02_analysis/h-interpret-results   | visualize-coefficients.R          | Plots coefficients and standard errors.                 |
+| src/02_analysis/h-interpret-results   | visualize-profiles-reintegration.R| Plots group profiles by reintegration measures.         |
 
 
 
