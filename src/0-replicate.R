@@ -1,5 +1,3 @@
-
-
 # PACKAGES -----------------------------------------------------------
 source(here::here('renv/activate.R'))
 library(tidyverse)
@@ -12,10 +10,7 @@ source(here::here('src/01_config/functions/function-append-results.R'))
 
 # DATA SET MANAGEMENT -----------------------------------------------------------
 ## Clean the data
-data_original <- read_csv(here::here('data/processed/data_original.csv'))
-
-data <- data_original %>% filter(dataset_main == 1)
-analysis <- c('main') # this is a label for the analysis 'main' later 'robust'
+data <- read_csv(here::here('data/data_main.csv'))
 
 
 # DESCRIBE SAMPLE ----------------------------------------------------------
@@ -32,6 +27,7 @@ source(here::here('src/02_analysis/b-graphic-modelling/draw-dags.R'))
 ## Reintegration
 source(here::here('src/02_analysis/c-examine-measures/cfa-mcarm.R'))
 
+
 ## Military Identity 
 source(here::here('src/02_analysis/c-examine-measures/cfa-wis.R'))
 
@@ -40,15 +36,12 @@ source(here::here('src/02_analysis/c-examine-measures/cfa-wis.R'))
 source(here::here('src/02_analysis/d-create-groups/kmeans.R'))
 
 
-
 # CHOOSE GROUPING ---------------------------------------------------------
 ## Set K-Means 3-cluster as the latent group for the main data analysis
-data <- 
-  data %>% mutate(latent_group = kmeans_cluster_3)
+data <- data %>% mutate(latent_group = kmeans_cluster_3)
 
 
 # DESCRIBE CLUSTERS -------------------------------------------------------
-
 source(here::here('src/02_analysis/e-describe-groups/visualize-profiles.R'))
 source(here::here('src/02_analysis/e-describe-groups/alluvial-kmeans.R'))
 
@@ -57,9 +50,9 @@ data <-
   data %>% 
   mutate(
     latent_group = 
-      case_when(latent_group == 1 ~ 'Middle ID',
-                latent_group == 2 ~ 'Lower ID',
-                latent_group == 3 ~ 'Higher ID')
+      case_when(latent_group == 1 ~ 'Lower ID',
+                latent_group == 3 ~ 'Middle ID',
+                latent_group == 2 ~ 'Higher ID')
   ) %>% 
   # refactor reference level
   mutate(latent_group = 
@@ -76,8 +69,8 @@ source(here::here('src/02_analysis/e-describe-groups/differences-reintegration.R
 
 # EXAMINE VARIABLES -------------------------------------------------------
 ## Descriptive Statistics
-source(here::here('src/02_analysis/f-examine-variables/descriptive-categorical.R'))
 source(here::here('src/02_analysis/f-examine-variables/descriptive-continuous.R'))
+
 
 ## Visualizations
 source(here::here('src/02_analysis/f-examine-variables/plot-pairs.R'))
@@ -93,6 +86,7 @@ source(here::here('src/02_analysis/g-modelling/calculate-robust-se.R'))
 # INTERPRET MODELS --------------------------------------------------------
 source(here::here('src/02_analysis/h-interpret-results/make-results-tables-bivariate.R'))
 source(here::here('src/02_analysis/h-interpret-results/make-results-tables-full.R'))
+source(here::here('src/02_analysis/h-interpret-results/make-results-tables-mcarm.R'))
 source(here::here('src/02_analysis/h-interpret-results/visualize-coefficients.R'))
 source(here::here('src/02_analysis/h-interpret-results/visualize-profiles-reintegration.R'))
 
@@ -112,6 +106,5 @@ message('
         Hodges, T.J. (2024, forthcoming). Is Military Identity Helpful or Hurtful in Civilian Life? Comparing Reintegration and Adjustment by Latent Groups of Military Identity.
         
         
-        
-        ')
 
+        ')

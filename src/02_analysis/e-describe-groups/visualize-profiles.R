@@ -34,15 +34,16 @@ plot_profiles <-
   geom_line(
     aes(
       linetype = latent_group)) +
-  scale_color_viridis(option = 'C', discrete = TRUE) +
+  scale_color_manual(values = c('#440154', '#3b528b', '#5ec962')) +
+  #scale_color_viridis(option = 'C', discrete = TRUE) +
   theme_classic() +
   labs(title = paste0('Military Identity by Latent Groups'), 
        x = 'Aspect of Military Identity', 
-       y = 'Strength of Identity (mean item score)') + 
+       y = 'Identity (mean item score)') + 
   theme(axis.text.x = element_text(angle = -30, vjust = 1, hjust = 0)) +
-  labs(color = 'Latent Group',
-       shape = 'Latent Group',
-       linetype = 'Latent Group') +
+  labs(color = 'Cluster',
+       shape = 'Cluster',
+       linetype = 'Cluster') +
   scale_x_discrete(
   labels = c('Centrality', 
              'Connection',
@@ -51,7 +52,9 @@ plot_profiles <-
              'Private Regard',
              'Public Regard',
              'Skills')
-  )
+  ) +
+  theme(axis.text = element_text(size = 14),
+        text = element_text(size = 14))
 
 plot_profiles %>% print()
 

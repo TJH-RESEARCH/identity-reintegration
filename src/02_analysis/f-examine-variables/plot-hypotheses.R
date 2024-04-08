@@ -10,7 +10,6 @@ boxplot_mcarm <-
   ggplot(aes(x = mcarm_total, 
              y = latent_group)) +
   geom_boxplot() +
-  labs(title = 'Reintegration by Latent Identity Group') +
   xlab('Overall') +
   ylab('') +
   theme_classic()
@@ -99,11 +98,16 @@ boxplot_regiment <-
   theme(axis.text.y = element_blank())
 
 
+boxplot_patchwork <-
+  (boxplot_mcarm + boxplot_civilians + boxplot_help_seeking) / 
+  (  boxplot_purpose + boxplot_regiment + boxplot_resent) 
 
-(boxplot_mcarm + boxplot_civilians + boxplot_help_seeking) / 
-(  boxplot_purpose + boxplot_regiment + boxplot_resent)
+boxplot_patchwork <-
+  boxplot_patchwork +
+  plot_annotation(title = 'Reintegration by Military Identity Cluster')
 
-ggsave(plot = boxplot_regiment, filename = paste0('output/figures/boxplot-', analysis, '.jpg'))
+
+ggsave(boxplot_patchwork, filename = paste0('output/figures/boxplots.jpg'))
 
 rm(boxplot_mcarm, boxplot_civilians, boxplot_help_seeking, boxplot_purpose, boxplot_regiment, boxplot_resent)
 

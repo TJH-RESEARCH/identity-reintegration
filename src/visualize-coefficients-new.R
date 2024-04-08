@@ -9,57 +9,48 @@ coefplot_mcarm <-
   # Add robust standard errors
   mutate(se_robust = as.numeric(coeftest_mcarm_2[,2])) %>% 
   filter(term != '(Intercept)') %>% 
-  ggplot(aes(x = estimate, y = term, xmin = (estimate - 2 * se_robust),
-             xmax = (estimate + 2 * se_robust))) +
+  ggplot(aes(x = term, y = estimate, ymin = (estimate - 2 * se_robust),
+             ymax = (estimate + 2 * se_robust))) +
   geom_pointrange() +
-  geom_vline(aes(xintercept = 0), linetype = 2) +
+  geom_hline(aes(yintercept = 0), linetype = 2) +
   theme_classic() +
-  theme(axis.text = element_text(size = 14),
-        text = element_text(size = 14)
-        ) +
-  xlab('Total') +
+  xlab('M-CARM: Total') +
   ylab('') +
-  scale_y_discrete( 
-  labels = c(
-    `latent_groupLower ID` = 'Lower Identity',
-    `latent_groupHigher ID` = 'Higher Identity',
-    sex_male = 'Male',
-    race_black = 'Race: Black', 
-    race_white = 'Race: White',
-    branch_air_force = 'Branch: Air Force',
-    branch_marines = 'Branch: Marines',
-    branch_navy = 'Branch: Navy',
-    enlisted = 'Enlisted', 
-    service_era_post_911 = 'Post-9/11 Era',
-    service_era_vietnam = 'Vietnam Era',
-    service_era_persian_gulf = 'Persian Gulf Era',
-    n_deploy = 'Deployments (#)',
-    military_exp_combat = 'Combat'),
-  limits = c(
-    'military_exp_combat',
-    'n_deploy',
-    'service_era_vietnam', 
-    'service_era_persian_gulf',
-    'service_era_post_911', 
-    'enlisted', 
-    'branch_navy',
-    'branch_marines',
-    'branch_air_force',
-    'race_white',
-    'race_black', 
-    'sex_male',
-    'latent_groupHigher ID',
-    'latent_groupLower ID'
-  ) 
-  ) 
-
-
-
-
-
-
-
-
+  scale_x_discrete( 
+    labels = c(
+      `latent_groupLower ID` = 'Lower Identity',
+      `latent_groupHigher ID` = 'Higher Identity',
+      sex_male = 'Male',
+      race_black = 'Race: Black', 
+      race_white = 'Race: White',
+      branch_air_force = 'Branch: Air Force',
+      branch_marines = 'Branch: Marines',
+      branch_navy = 'Branch: Navy',
+      enlisted = 'Enlisted', 
+      service_era_post_911 = 'Post-9/11 Era',
+      service_era_vietnam = 'Vietnam Era',
+      service_era_persian_gulf = 'Persian Gulf Era',
+      n_deploy = 'Deployments (#)',
+      military_exp_combat = 'Combat'),
+    limits = c(
+      'latent_groupLower ID',
+      'latent_groupHigher ID',
+      'sex_male',
+      'race_black', 
+      'race_white',
+      'branch_air_force',
+      'branch_marines',
+      'branch_navy',
+      'enlisted', 
+      'service_era_persian_gulf',
+      'service_era_vietnam', 
+      'service_era_post_911', 
+      'n_deploy',
+      'military_exp_combat'
+    )
+  ) +
+  #theme(axis.text.x = element_text(angle = -45, vjust = 0, hjust = 0)) +
+  theme(axis.text.x = element_blank())
 
 
 
@@ -71,18 +62,15 @@ coefplot_civilians <-
   # Add robust standard errors
   mutate(se_robust = as.numeric(coeftest_civilians_2[,2])) %>% 
   filter(term != '(Intercept)') %>% 
-  ggplot(aes(x = estimate, y = term, xmin = (estimate - 2 * se_robust),
-             xmax = (estimate + 2 * se_robust))) +
+  ggplot(aes(x = term, y = estimate, ymin = (estimate - 2 * se_robust),
+             ymax = (estimate + 2 * se_robust))) +
   geom_pointrange() +
-  geom_vline(aes(xintercept = 0), linetype = 2) +
+  geom_hline(aes(yintercept = 0), linetype = 2) +
   theme_classic() +
-  theme(axis.text = element_text(size = 14),
-        text = element_text(size = 14)
-  ) +
   labs(title = '') +
-  xlab('Civilians') +
-  ylab('')  +
-  scale_y_discrete( 
+  xlab('Beliefs About Civilians') +
+  ylab('') +
+  scale_x_discrete( 
     labels = c(
       `latent_groupLower ID` = 'Lower Identity',
       `latent_groupHigher ID` = 'Higher Identity',
@@ -99,24 +87,24 @@ coefplot_civilians <-
       n_deploy = 'Deployments (#)',
       military_exp_combat = 'Combat'),
     limits = c(
-      'military_exp_combat',
-      'n_deploy',
-      'service_era_vietnam', 
-      'service_era_persian_gulf',
-      'service_era_post_911', 
-      'enlisted', 
-      'branch_navy',
-      'branch_marines',
-      'branch_air_force',
-      'race_white',
-      'race_black', 
-      'sex_male',
+      'latent_groupLower ID',
       'latent_groupHigher ID',
-      'latent_groupLower ID'
-    ) 
+      'sex_male',
+      'race_black', 
+      'race_white',
+      'branch_air_force',
+      'branch_marines',
+      'branch_navy',
+      'enlisted', 
+      'service_era_persian_gulf',
+      'service_era_vietnam', 
+      'service_era_post_911', 
+      'n_deploy',
+      'military_exp_combat'
+    )
   ) +
-  theme(axis.text.y = element_blank())
-
+  theme(axis.text.x = element_text(angle = -45, vjust = 0, hjust = 0))
+coefplot_civilians
 
 # -------------------------------------------------------------------------
 coefplot_help_seeking <-
@@ -126,17 +114,15 @@ coefplot_help_seeking <-
   # Add robust standard errors
   mutate(se_robust = as.numeric(coeftest_help_seeking_2[,2])) %>% 
   filter(term != '(Intercept)') %>% 
-  ggplot(aes(x = estimate, y = term, xmin = (estimate - 2 * se_robust),
-             xmax = (estimate + 2 * se_robust))) +
+  ggplot(aes(x = term, y = estimate, ymin = (estimate - 2 * se_robust),
+             ymax = (estimate + 2 * se_robust))) +
   geom_pointrange() +
-  geom_vline(aes(xintercept = 0), linetype = 2) +
+  geom_hline(aes(yintercept = 0), linetype = 2) +
   theme_classic() +
-  theme(axis.text = element_text(size = 14),
-        text = element_text(size = 14)) +
   labs(title = '') +
   xlab('Help Seeking') +
-  ylab('')  +
-  scale_y_discrete( 
+  ylab('') +
+  scale_x_discrete( 
     labels = c(
       `latent_groupLower ID` = 'Lower Identity',
       `latent_groupHigher ID` = 'Higher Identity',
@@ -153,24 +139,24 @@ coefplot_help_seeking <-
       n_deploy = 'Deployments (#)',
       military_exp_combat = 'Combat'),
     limits = c(
-      'military_exp_combat',
-      'n_deploy',
-      'service_era_vietnam', 
-      'service_era_persian_gulf',
-      'service_era_post_911', 
-      'enlisted', 
-      'branch_navy',
-      'branch_marines',
-      'branch_air_force',
-      'race_white',
-      'race_black', 
-      'sex_male',
+      'latent_groupLower ID',
       'latent_groupHigher ID',
-      'latent_groupLower ID'
-    ) 
+      'sex_male',
+      'race_black', 
+      'race_white',
+      'branch_air_force',
+      'branch_marines',
+      'branch_navy',
+      'enlisted', 
+      'service_era_persian_gulf',
+      'service_era_vietnam', 
+      'service_era_post_911', 
+      'n_deploy',
+      'military_exp_combat'
+    )
   ) +
-  theme(axis.text.y = element_blank())
-  
+  theme(axis.text.x = element_text(angle = -45, vjust = 0, hjust = 0))
+
 
 
 
@@ -182,17 +168,14 @@ coefplot_purpose <-
   # Add robust standard errors
   mutate(se_robust = as.numeric(coeftest_purpose_2[,2])) %>% 
   filter(term != '(Intercept)') %>% 
-  ggplot(aes(x = estimate, y = term, xmin = (estimate - 2 * se_robust),
-             xmax = (estimate + 2 * se_robust))) +
+  ggplot(aes(x = term, y = estimate, ymin = (estimate - 2 * se_robust),
+             ymax = (estimate + 2 * se_robust))) +
   geom_pointrange() +
-  geom_vline(aes(xintercept = 0), linetype = 2) +
+  geom_hline(aes(yintercept = 0), linetype = 2) +
   theme_classic() +
-  theme(axis.text = element_text(size = 14),
-        text = element_text(size = 14)
-  ) +
   xlab('Purpose') +
   ylab('') +
-  scale_y_discrete( 
+  scale_x_discrete( 
     labels = c(
       `latent_groupLower ID` = 'Lower Identity',
       `latent_groupHigher ID` = 'Higher Identity',
@@ -209,22 +192,24 @@ coefplot_purpose <-
       n_deploy = 'Deployments (#)',
       military_exp_combat = 'Combat'),
     limits = c(
-      'military_exp_combat',
-      'n_deploy',
-      'service_era_vietnam', 
-      'service_era_persian_gulf',
-      'service_era_post_911', 
-      'enlisted', 
-      'branch_navy',
-      'branch_marines',
-      'branch_air_force',
-      'race_white',
-      'race_black', 
-      'sex_male',
+      'latent_groupLower ID',
       'latent_groupHigher ID',
-      'latent_groupLower ID'
+      'sex_male',
+      'race_black', 
+      'race_white',
+      'branch_air_force',
+      'branch_marines',
+      'branch_navy',
+      'enlisted', 
+      'service_era_persian_gulf',
+      'service_era_vietnam', 
+      'service_era_post_911', 
+      'n_deploy',
+      'military_exp_combat'
     )
-  )
+  ) +
+  # theme(axis.text.x = element_text(angle = -45, vjust = 0, hjust = 0)) +
+  theme(axis.text.x = element_blank())
 
 
 
@@ -237,17 +222,15 @@ coefplot_resent <-
   # Add robust standard errors
   mutate(se_robust = as.numeric(coeftest_resent_2[,2])) %>% 
   filter(term != '(Intercept)') %>% 
-  ggplot(aes(x = estimate, y = term, xmin = (estimate - 2 * se_robust),
-             xmax = (estimate + 2 * se_robust))) +
+  ggplot(aes(x = term, y = estimate, ymin = (estimate - 2 * se_robust),
+             ymax = (estimate + 2 * se_robust))) +
   geom_pointrange() +
-  geom_vline(aes(xintercept = 0), linetype = 2) +
+  geom_hline(aes(yintercept = 0), linetype = 2) +
   theme_classic() +
-  theme(axis.text = element_text(size = 14),
-        text = element_text(size = 14)) +
   labs(title = '') +
-  xlab('Resentment') +
-  ylab('')  +
-  scale_y_discrete( 
+  xlab('Resentment and Regret') +
+  ylab('') +
+  scale_x_discrete( 
     labels = c(
       `latent_groupLower ID` = 'Lower Identity',
       `latent_groupHigher ID` = 'Higher Identity',
@@ -264,26 +247,26 @@ coefplot_resent <-
       n_deploy = 'Deployments (#)',
       military_exp_combat = 'Combat'),
     limits = c(
-      'military_exp_combat',
-      'n_deploy',
-      'service_era_vietnam', 
-      'service_era_persian_gulf',
-      'service_era_post_911', 
-      'enlisted', 
-      'branch_navy',
-      'branch_marines',
-      'branch_air_force',
-      'race_white',
-      'race_black', 
-      'sex_male',
+      'latent_groupLower ID',
       'latent_groupHigher ID',
-      'latent_groupLower ID'
-    ) 
+      'sex_male',
+      'race_black', 
+      'race_white',
+      'branch_air_force',
+      'branch_marines',
+      'branch_navy',
+      'enlisted', 
+      'service_era_persian_gulf',
+      'service_era_vietnam', 
+      'service_era_post_911', 
+      'n_deploy',
+      'military_exp_combat'
+    )
   )  +
-  theme(axis.text.y = element_blank())
+  theme(axis.text.x = element_text(angle = -45, vjust = 0, hjust = 0))
 
 
-
+coefplot_resent
 
 # -------------------------------------------------------------------------
 coefplot_regiment <-
@@ -293,18 +276,15 @@ coefplot_regiment <-
   # Add robust standard errors
   mutate(se_robust = as.numeric(coeftest_regiment_2[,2])) %>% 
   filter(term != '(Intercept)') %>% 
-  ggplot(aes(x = estimate, y = term, xmin = (estimate - 2 * se_robust),
-             xmax = (estimate + 2 * se_robust))) +
+  ggplot(aes(x = term, y = estimate, ymin = (estimate - 2 * se_robust),
+             ymax = (estimate + 2 * se_robust))) +
   geom_pointrange() +
-  geom_vline(aes(xintercept = 0), linetype = 2) +
+  geom_hline(aes(yintercept = 0), linetype = 2) +
   theme_classic() +
-  theme(axis.text = element_text(size = 14),
-        text = element_text(size = 14)
-  ) +
   labs(title = '') +
   xlab('Regimentation') +
-  ylab('')  +
-  scale_y_discrete( 
+  ylab('') +
+  scale_x_discrete( 
     labels = c(
       `latent_groupLower ID` = 'Lower Identity',
       `latent_groupHigher ID` = 'Higher Identity',
@@ -321,23 +301,24 @@ coefplot_regiment <-
       n_deploy = 'Deployments (#)',
       military_exp_combat = 'Combat'),
     limits = c(
-      'military_exp_combat',
-      'n_deploy',
-      'service_era_vietnam', 
-      'service_era_persian_gulf',
-      'service_era_post_911', 
-      'enlisted', 
-      'branch_navy',
-      'branch_marines',
-      'branch_air_force',
-      'race_white',
-      'race_black', 
-      'sex_male',
+      'latent_groupLower ID',
       'latent_groupHigher ID',
-      'latent_groupLower ID'
-    ) 
-  )  +
-  theme(axis.text.y = element_blank())
+      'sex_male',
+      'race_black', 
+      'race_white',
+      'branch_air_force',
+      'branch_marines',
+      'branch_navy',
+      'enlisted', 
+      'service_era_persian_gulf',
+      'service_era_vietnam', 
+      'service_era_post_911', 
+      'n_deploy',
+      'military_exp_combat'
+    )
+  ) +
+  #theme(axis.text.x = element_text(angle = -45, vjust = 0, hjust = 0)) +
+  theme(axis.text.x = element_blank())
 
 
 
@@ -346,18 +327,16 @@ coefplot_regiment <-
 
 library(patchwork)
 
-plot_coef_1 <- (coefplot_mcarm + coefplot_civilians + coefplot_help_seeking)
-plot_coef_2 <- (coefplot_purpose + coefplot_resent + coefplot_regiment) 
+plot_coef_1 <- coefplot_mcarm / coefplot_help_seeking
+plot_coef_2 <- coefplot_purpose / coefplot_resent
+plot_coef_3 <- coefplot_regiment / coefplot_civilians
 
 plot_coef_1 %>% print()
 plot_coef_2 %>% print()
+plot_coef_3 %>% print()
 
-ggsave(filename = paste0('output/figures/coeficients_1.jpg'),
-       plot = plot_coef_1)
-
-ggsave(filename = paste0('output/figures/coeficients_2.jpg'),
-       plot = plot_coef_2)
-
+ggsave(filename = paste0('output/figures/coeficients-', analysis, '.jpg'),
+       plot = plot_coef)
 
 rm(
   coefplot_civilians,
@@ -366,9 +345,7 @@ rm(
   coefplot_purpose,
   coefplot_regiment,
   coefplot_resent,
-  plot_coef_1,
-  plot_coef_2,
-  plot_coef_3)
+  plot_coef)
 
 
 

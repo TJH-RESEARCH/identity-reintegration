@@ -44,34 +44,37 @@ profile_reintegration <-
             vjust =   1, 
             hjust =   0)) +
   
-  labs(color = 'Latent Group',
-       shape = 'Latent Group',
-       linetype = 'Latent Group') +
+  labs(color = 'Cluster',
+       shape = 'Cluster',
+       linetype = 'Cluster') +
   
   # SCALES
-  scale_color_viridis(option = 'C', discrete = TRUE) +
+  
+  scale_color_manual(values = c('#440154', '#3b528b', '#5ec962')) +
   
   scale_x_discrete(
     labels = 
-      c('Beliefs About Civilians', 
+      c('Civilians', 
         'Help Seeking',
         'Purpose',
         'Regimentation',
         'Resentment')) +
 
-  labs(title = 'Reintegration by Latent Groups', 
+  labs(title = 'Reintegration by Cluster', 
        x = 'Aspect of Reintegration', 
-       y = 'Adjustment (mean item score)')
+       y = 'Adjustment (mean item score)') +
+  theme(axis.text = element_text(size = 14),
+        text = element_text(size = 14))
   
 
 profile_reintegration %>% print()
 
-ggsave(filename = paste0('output/figures/profiles-reintegration-', analysis, '.jpg'),
+ggsave(filename = paste0('output/figures/profiles-reintegration.jpg'),
   plot = profile_reintegration)
 
 library(patchwork)
-plot_profiles / profile_reintegration
-  ggsave(filename = paste0('output/figures/profiles-identity-reintegration-', analysis, '.jpg'))
+profile_reintegration + plot_profiles
+  ggsave(filename = paste0('output/figures/profiles-identity-reintegration.jpg'))
 
 
 rm(profile_reintegration)

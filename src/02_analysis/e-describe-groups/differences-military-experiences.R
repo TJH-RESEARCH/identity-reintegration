@@ -1,6 +1,6 @@
 
-
-data %>% 
+clusters_table <- 
+  data %>% 
   select(sex_male,
          sexual_orientation_straight,
          race_black,
@@ -13,6 +13,10 @@ data %>%
          pc_ptsd_positive_screen,
          mios_screener,
          disability,
+         years_of_age,
+         years_service,
+         years_separation,
+         n_deploy,
          latent_group) %>% 
   group_by(latent_group) %>% 
   summarise(across(everything(), ~ sum(.x) / n()),
@@ -33,6 +37,10 @@ data %>%
          pc_ptsd_positive_screen,
          mios_screener,
          disability,
+         years_of_age,
+         years_service,
+         years_separation,
+         n_deploy,
          latent_group) %>% 
   summarise(across(where(is.numeric), ~ sum(.x) / n()),
              n = n()) %>% 
@@ -46,4 +54,20 @@ data %>%
   t() %>% 
   kableExtra::kbl(format = 'latex')
 
+
+
+
+
+clusters_table %>% print()
+# Write -------------------------------------------------------------------
+write_lines(x = clusters_table,
+            file = paste0(here::here(), '/output/tables/clusters-tables.txt'))
+
+append_results_tables(clusters_table)
+rm(clusters_table)
+
+
+
+readr::read_csv(here::here('data/processed/data_main.csv'))
+here::here()
 
