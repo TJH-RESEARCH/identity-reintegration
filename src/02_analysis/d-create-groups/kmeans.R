@@ -67,7 +67,7 @@ results_kmeans_limited$Best.nc[1,] %>% tibble() %>% rename(best = 1) %>% as.data
 temp <- results_kmeans_limited$All.index[1:2,] %>% 
   as.data.frame() %>% t() %>% as.data.frame()
 
-results_clusters_best <- 
+results_kmeans_table <- 
 temp %>% tibble() %>% 
   mutate(name = temp %>% rownames(),
          best = results_kmeans_limited$Best.nc[1,]) %>% 
@@ -77,23 +77,8 @@ temp %>% tibble() %>%
          best = ifelse(name == 'trcovw', 4, best) # the largest difference between different levels. So if 2 has 100, 3 is 50, and 4 is 40, then the first diff is 50 and the second is ten. 3 is best solution. with only 2, there is no way to solve expect it favors the later. 
          )
 
-results_clusters_best %>% write_csv(here::here('output/'))
-
-# Looks like either 2 or 3 group is the best, but not unanimously.
-# Similarly, the 5 best indices in a simulation study are:
-# Beale, Ch, Duda, Cindex, and Gamma, according to the nbclust article; 
-# (Charrad et al., 2014).
-# again, 2 is favored to 3 clusters by three of five measures -- not unanimous
-
-results_kmeans_table <-
-results_kmeans$All.index %>% 
-  as.data.frame() %>% 
-  tibble() %>% 
-  slice(1:2) %>% 
-  mutate(k = c('2','3'))
-results_kmeans_table %>% print()    
-
 results_kmeans_table %>% write_csv('output/stats/kmeans-fit.csv')
+
 
 
 # Let's see the sample size to 

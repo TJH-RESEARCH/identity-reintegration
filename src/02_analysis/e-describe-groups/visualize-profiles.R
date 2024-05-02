@@ -2,6 +2,12 @@ library(viridis)
 
 plot_profiles <-
   data %>% 
+  mutate(latent_group = 
+           factor(latent_group, 
+                  levels = c('Lower Identity', 
+                             'Medium Identity', 
+                             'Higher Identity'))
+  ) %>% 
   mutate(wis_skills_total = wis_skills_total / 3,
          wis_centrality_total = wis_centrality_total / 4,
          wis_connection_total = wis_connection_total / 3,
@@ -53,12 +59,12 @@ plot_profiles <-
              'Public Regard',
              'Skills')
   ) +
-  theme(axis.text = element_text(size = 14),
+  theme(axis.text = element_text(size = 11),
         text = element_text(size = 14))
 
 plot_profiles %>% print()
 
 ggsave(plot = plot_profiles,
-       filename = paste0('output/figures/profiles-identity-', analysis, '.jpg'))
+       filename = paste0('output/figures/profiles-identity.jpg'))
  
 #rm(plot_profiles)

@@ -2,6 +2,7 @@
 
 
 # Library -----------------------------------------------------------------
+library(ggplot2)
 library(dagitty)
 library(ggdag)
 
@@ -62,9 +63,9 @@ ggsave(here::here('output/figures/graphical-models/dag_basic_adj_set.jpeg'))
 dag_2 <- 
   
   dagify('Reint' ~ 'ID' + 'Race' + 'Sex' + 'Officer' + 'Era' + 'Deploy' + 'Branch', 
-         'ID' ~ 'Race' + 'Sex'+ 'Officer' + 'Era' + 'Deploy' + 'Branch' + 'Family' + 'Years',
+         'ID' ~ 'Race' + 'Sex'+ 'Officer' + 'Era' + 'Deploy' + 'Branch' + 'Family' + 'YearsSrv',
          'Officer' ~ 'Race' + 'Sex',
-         'Deploy' ~ 'Years',
+         'Deploy' ~ 'YearsSrv',
          exposure = 'ID', 
          outcome = 'Reint')
 
@@ -72,7 +73,7 @@ dag_2 <-
 ggdag::tidy_dagitty(dag_2)
 
 coordinates(dag_2) <- list(
-  x = c(ID = 0, Years = 0, Family = 0, Era = .35, Race = .4, Officer = .5, Branch = .5, Sex = .6, Deploy = .65, Reint = 1),
+  x = c(ID = 0, YearsSrv = 0, Family = 0, Era = .35, Race = .4, Officer = .5, Branch = .5, Sex = .6, Deploy = .65, Reint = 1),
   y = c(
     Reint = 1,
     Officer = 1.1,
@@ -81,7 +82,7 @@ coordinates(dag_2) <- list(
     Race = 1.2,
     ID = 1,
     Branch = .9,
-    Years = .9,
+    YearsSrv = .9,
     Era = .8,
     Deploy = .8
   )
@@ -119,12 +120,12 @@ ggsave(here::here('output/figures/graphical-models/dag_2_adj_set.jpeg'))
 dag_3 <- 
   
   dagify('Reint' ~ 'ID' + 'Race' + 'Sex' + 'Officer' + 'Era' + 'Deploy' + 'Branch' + 'Needs' + 'Dis' + 'Combat', 
-         'ID' ~ 'Race' + 'Sex'+ 'Officer' + 'Era' + 'Deploy' + 'Branch' + 'Combat' + 'Family' + 'Years',
+         'ID' ~ 'Race' + 'Sex'+ 'Officer' + 'Era' + 'Deploy' + 'Branch' + 'Combat' + 'Family' + 'YearsSrv',
          'Officer' ~ 'Race' + 'Sex',
          'Needs' ~ 'Dis',
          'Dis' ~ 'Deploy' + 'Combat',
          'Combat' ~  'Era',
-         'Deploy' ~ 'Years',
+         'Deploy' ~ 'YearsSrv',
          exposure = 'ID', 
          outcome = 'Reint')
 
@@ -132,7 +133,7 @@ dag_3 <-
 ggdag::tidy_dagitty(dag_3)
 
 coordinates(dag_3) <- list(
-  x = c(ID = 0, Years = 0, Family = 0,  Era = .16, Race = .4,  Branch = .4, Deploy = .5, Combat = .5, Officer = .5, Sex = .6, Dis = .75, Reint = 1,  Needs = 1),
+  x = c(ID = 0, YearsSrv = 0, Family = 0,  Era = .16, Race = .4,  Branch = .4, Deploy = .5, Combat = .5, Officer = .5, Sex = .6, Dis = .75, Reint = 1,  Needs = 1),
   y = c(
     Sex = 1.2,
     Race = 1.2,
@@ -141,7 +142,7 @@ coordinates(dag_3) <- list(
     Reint = 1,
     ID = 1,
     Branch = .95,
-    Years = .9,
+    YearsSrv = .9,
     Deploy = .87,
     Era = .87,
     Needs = .8,
@@ -173,6 +174,31 @@ adjustmentSets(dag_3)
 ggsave(here::here('output/figures/graphical-models/dag_3_adj_set.jpeg'))
 
 
+
+# Can we adjust for unmet needs without activating backdoor paths? --------
+ggdag_adjust(dag_3,var = 'Needs')
+
+ggdag_adjust(dag_3,var = c('Branch', 
+                           'Combat', 
+                           'Deploy', 
+                           'Era', 
+                           'Officer',
+                           'Race',
+                           'Sex'))
+
+
+ggdag_adjust(dag_3,var = c('Branch', 
+                           'Combat', 
+                           'Deploy', 
+                           'Era', 
+                           'Officer',
+                           'Race',
+                           'Sex',
+                           'Needs'))
+## No. If years of service causes identity, 
+# and years of service also heightens risk for disability
+# and disability is related to unmet needs, 
+# Then adjusting the model for unmet needs introduces spurious association. 
 
 
 

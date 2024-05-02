@@ -50,7 +50,7 @@ gof_stats <- texreg::texreg(
 )
 
 
-results_table <- c(read_lines(table)[1:24], read_lines(gof_stats, skip = 38))
+results_table <- c(read_lines(table)[1:23], read_lines(gof_stats, skip = 38))
 results_table %>% print()
 # Write -------------------------------------------------------------------
 write_lines(x = results_table,

@@ -9,6 +9,7 @@ clusters_table <-
          discharge_medical, discharge_other, 
          branch_air_force, branch_army, branch_marines, branch_navy,
          service_era_post_911, service_era_persian_gulf, service_era_vietnam,
+         rank_e1_e3, rank_e4_e6, rank_e7_e9, rank_w1_cw5, rank_o1_o3, rank_o4_o6,
          military_exp_combat, 
          pc_ptsd_positive_screen,
          mios_screener,
@@ -33,6 +34,7 @@ data %>%
          discharge_medical, discharge_other, 
          branch_air_force, branch_army, branch_marines, branch_navy,
          service_era_post_911, service_era_persian_gulf, service_era_vietnam,
+         rank_e1_e3, rank_e4_e6, rank_e7_e9, rank_w1_cw5, rank_o1_o3, rank_o4_o6,
          military_exp_combat, 
          pc_ptsd_positive_screen,
          mios_screener,
@@ -66,8 +68,4 @@ write_lines(x = clusters_table,
 append_results_tables(clusters_table)
 rm(clusters_table)
 
-
-
-readr::read_csv(here::here('data/processed/data_main.csv'))
-here::here()
 

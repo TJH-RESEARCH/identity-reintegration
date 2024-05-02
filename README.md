@@ -66,7 +66,6 @@ The data analysis scripts are ordered in seven stages: desciptives, graphic mode
 | src/02_analysis/f-examine-variables   | descriptive-continuous.R          | Prints summary table/latex for the continuous variables |
 | src/02_analysis/f-examine-variables   | plot-hypotheses.R                 | Creates bivariate plots of primary variables.           |
 | src/02_analysis/f-examine-variables   | plot-pairs.R                      | Creates paired plots of continuous variables.           |
-| src/02_analysis/f-examine-variables   | plot-reintegration.R              | Creates histogram and boxplot of reintegration.         |
 | src/02_analysis/f-examine-variables   | bivariate-plot.R                  | Creates paired plots of variables.                      |
 | src/02_analysis/g-modelling           | fit-models.R                      | Specify and fits regression models to data.             |
 | src/02_analysis/g-modelling           | model-diagnostics.R               | Creates diagnostic plots for regression models.         |
@@ -75,6 +74,7 @@ The data analysis scripts are ordered in seven stages: desciptives, graphic mode
 | src/02_analysis/h-interpret-results   | make-results-tables-full.R        | Creates latex tables of regression results.             |
 | src/02_analysis/h-interpret-results   | make-results-tables-bivariate.R   | Creates latex tables of regression results.             |
 | src/02_analysis/h-interpret-results   | visualize-coefficients.R          | Plots coefficients and standard errors.                 |
+| src/02_analysis/h-interpret-results   | visualize-coefficients-terms.R    | Plots coefficients and standard errors of main variable.|
 | src/02_analysis/h-interpret-results   | visualize-profiles-reintegration.R| Plots group profiles by reintegration measures.         |
 
 
@@ -82,8 +82,8 @@ The data analysis scripts are ordered in seven stages: desciptives, graphic mode
 The provided code reproduces:
 
 - All numbers provided in text in the paper and supplemental material
-- All tables and figures in the paper and supplemental material
-- Additional analyses discussed in the paper conducted in the course of the data analysis.
+- The underlying data for the tables and figures in the paper and supplemental material. In most cases, the code produces a near replication of the figures and tables, although some were manually edited for style (not content) in the course of preparing the manuscript.
+- Additional analyses conducted in the course of the data analysis (e.g., paired plots; confirmatory factor analysis).
 
 
 ## References
@@ -97,6 +97,6 @@ Hodges, Thomas. 2023. “Moral Injury, Identity Dissonance, and Reintegration: A
 ## Acknowledgements
 
 
-This README document was inspired by the template  [avaialable here](https://github.com/social-science-data-editors/template_README/blob/master/template-README.md).
+This README document was inspired by the template  [available here](https://github.com/social-science-data-editors/template_README/blob/master/template-README.md).
 
 

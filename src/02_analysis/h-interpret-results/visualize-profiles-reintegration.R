@@ -2,6 +2,12 @@ library(viridis)
 
 profile_reintegration <-
   data %>% 
+  mutate(latent_group = 
+           factor(latent_group, 
+                  levels = c('Lower Identity', 
+                             'Medium Identity', 
+                             'Higher Identity'))
+  ) %>% 
   mutate(mcarm_help_seeking = mcarm_help_seeking / 4, 
          mcarm_regimentation = mcarm_regimentation / 4, 
          mcarm_resentment_regret = mcarm_resentment_regret /3, 
@@ -22,18 +28,18 @@ profile_reintegration <-
       y     = value, 
       color = latent_group,
       group = latent_group),
-    alpha = .8) + 
+    alpha = .9) + 
   geom_line(
     aes(
       linetype = latent_group, 
       color    = latent_group),
-    alpha = .8) +
+    alpha = .9) +
   geom_point(
     aes(
       shape = latent_group,
       color = latent_group),
     size  = 4,
-    alpha = .8) + 
+    alpha = .9) + 
   
   # THEME
   theme_classic() +
@@ -54,7 +60,7 @@ profile_reintegration <-
   
   scale_x_discrete(
     labels = 
-      c('Civilians', 
+      c('Beliefs about Civilians', 
         'Help Seeking',
         'Purpose',
         'Regimentation',
@@ -62,8 +68,8 @@ profile_reintegration <-
 
   labs(title = 'Reintegration by Cluster', 
        x = 'Aspect of Reintegration', 
-       y = 'Adjustment (mean item score)') +
-  theme(axis.text = element_text(size = 14),
+       y = 'Reintegration (mean item score)') +
+  theme(axis.text = element_text(size = 11),
         text = element_text(size = 14))
   
 

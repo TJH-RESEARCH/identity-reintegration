@@ -2,14 +2,16 @@
 
 # Trying to wrangle the robust errors
 
-coefplot_mcarm <-
+(coefplot_mcarm <-
   model_mcarm_2 %>% 
   broom::tidy(conf.int = T, conf.level = 0.95) %>% 
   
   # Add robust standard errors
   mutate(se_robust = as.numeric(coeftest_mcarm_2[,2])) %>% 
   filter(term != '(Intercept)') %>% 
-  ggplot(aes(x = estimate, y = term, xmin = (estimate - 2 * se_robust),
+  ggplot(aes(x = estimate, 
+             y = term, 
+             xmin = (estimate - 2 * se_robust),
              xmax = (estimate + 2 * se_robust))) +
   geom_pointrange() +
   geom_vline(aes(xintercept = 0), linetype = 2) +
@@ -21,8 +23,8 @@ coefplot_mcarm <-
   ylab('') +
   scale_y_discrete( 
   labels = c(
-    `latent_groupLower ID` = 'Lower Identity',
-    `latent_groupHigher ID` = 'Higher Identity',
+    `latent_groupLower Identity` = 'Lower Identity',
+    `latent_groupHigher Identity` = 'Higher Identity',
     sex_male = 'Male',
     race_black = 'Race: Black', 
     race_white = 'Race: White',
@@ -48,11 +50,11 @@ coefplot_mcarm <-
     'race_white',
     'race_black', 
     'sex_male',
-    'latent_groupHigher ID',
-    'latent_groupLower ID'
+    'latent_groupHigher Identity',
+    'latent_groupLower Identity'
   ) 
   ) 
-
+)
 
 
 
@@ -77,15 +79,15 @@ coefplot_civilians <-
   geom_vline(aes(xintercept = 0), linetype = 2) +
   theme_classic() +
   theme(axis.text = element_text(size = 14),
-        text = element_text(size = 14)
+        text = element_text(size = 12)
   ) +
   labs(title = '') +
-  xlab('Civilians') +
+  xlab('Beliefs about Civilians') +
   ylab('')  +
   scale_y_discrete( 
     labels = c(
-      `latent_groupLower ID` = 'Lower Identity',
-      `latent_groupHigher ID` = 'Higher Identity',
+      `latent_groupLower Identity` = 'Lower Identity',
+      `latent_groupHigher Identity` = 'Higher Identity',
       sex_male = 'Male',
       race_black = 'Race: Black', 
       race_white = 'Race: White',
@@ -111,8 +113,8 @@ coefplot_civilians <-
       'race_white',
       'race_black', 
       'sex_male',
-      'latent_groupHigher ID',
-      'latent_groupLower ID'
+      'latent_groupHigher Identity',
+      'latent_groupLower Identity'
     ) 
   ) +
   theme(axis.text.y = element_blank())
@@ -138,8 +140,8 @@ coefplot_help_seeking <-
   ylab('')  +
   scale_y_discrete( 
     labels = c(
-      `latent_groupLower ID` = 'Lower Identity',
-      `latent_groupHigher ID` = 'Higher Identity',
+      `latent_groupLower Identity` = 'Lower Identity',
+      `latent_groupHigher Identity` = 'Higher Identity',
       sex_male = 'Male',
       race_black = 'Race: Black', 
       race_white = 'Race: White',
@@ -165,8 +167,8 @@ coefplot_help_seeking <-
       'race_white',
       'race_black', 
       'sex_male',
-      'latent_groupHigher ID',
-      'latent_groupLower ID'
+      'latent_groupHigher Identity',
+      'latent_groupLower Identity'
     ) 
   ) +
   theme(axis.text.y = element_blank())
@@ -194,8 +196,8 @@ coefplot_purpose <-
   ylab('') +
   scale_y_discrete( 
     labels = c(
-      `latent_groupLower ID` = 'Lower Identity',
-      `latent_groupHigher ID` = 'Higher Identity',
+      `latent_groupLower Identity` = 'Lower Identity',
+      `latent_groupHigher Identity` = 'Higher Identity',
       sex_male = 'Male',
       race_black = 'Race: Black', 
       race_white = 'Race: White',
@@ -221,8 +223,8 @@ coefplot_purpose <-
       'race_white',
       'race_black', 
       'sex_male',
-      'latent_groupHigher ID',
-      'latent_groupLower ID'
+      'latent_groupHigher Identity',
+      'latent_groupLower Identity'
     )
   )
 
@@ -249,8 +251,8 @@ coefplot_resent <-
   ylab('')  +
   scale_y_discrete( 
     labels = c(
-      `latent_groupLower ID` = 'Lower Identity',
-      `latent_groupHigher ID` = 'Higher Identity',
+      `latent_groupLower Identity` = 'Lower Identity',
+      `latent_groupHigher Identity` = 'Higher Identity',
       sex_male = 'Male',
       race_black = 'Race: Black', 
       race_white = 'Race: White',
@@ -276,8 +278,8 @@ coefplot_resent <-
       'race_white',
       'race_black', 
       'sex_male',
-      'latent_groupHigher ID',
-      'latent_groupLower ID'
+      'latent_groupHigher Identity',
+      'latent_groupLower Identity'
     ) 
   )  +
   theme(axis.text.y = element_blank())
@@ -306,8 +308,8 @@ coefplot_regiment <-
   ylab('')  +
   scale_y_discrete( 
     labels = c(
-      `latent_groupLower ID` = 'Lower Identity',
-      `latent_groupHigher ID` = 'Higher Identity',
+      `latent_groupLower Identity` = 'Lower Identity',
+      `latent_groupHigher Identity` = 'Higher Identity',
       sex_male = 'Male',
       race_black = 'Race: Black', 
       race_white = 'Race: White',
@@ -333,8 +335,8 @@ coefplot_regiment <-
       'race_white',
       'race_black', 
       'sex_male',
-      'latent_groupHigher ID',
-      'latent_groupLower ID'
+      'latent_groupHigher Identity',
+      'latent_groupLower Identity'
     ) 
   )  +
   theme(axis.text.y = element_blank())
@@ -367,8 +369,7 @@ rm(
   coefplot_regiment,
   coefplot_resent,
   plot_coef_1,
-  plot_coef_2,
-  plot_coef_3)
+  plot_coef_2)
 
 
 

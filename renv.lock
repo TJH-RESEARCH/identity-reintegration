@@ -179,32 +179,6 @@
       ],
       "Hash": "0776bf7526869e0286b0463cb72fb211"
     },
-    "MplusAutomation": {
-      "Package": "MplusAutomation",
-      "Version": "1.1.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "boot",
-        "checkmate",
-        "coda",
-        "data.table",
-        "digest",
-        "fastDummies",
-        "ggplot2",
-        "gsubfn",
-        "lattice",
-        "methods",
-        "pander",
-        "parallel",
-        "plyr",
-        "texreg",
-        "utils",
-        "xtable"
-      ],
-      "Hash": "6a764da6f8d1a471b1f5119ce4532292"
-    },
     "NbClust": {
       "Package": "NbClust",
       "Version": "3.0.1",
@@ -635,16 +609,6 @@
         "R"
       ],
       "Hash": "ac6cdb8552c61bd36b0e54d07cf2aab7"
-    },
-    "careless": {
-      "Package": "careless",
-      "Version": "1.2.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "psych"
-      ],
-      "Hash": "d2ed8ca032f0c483b7f79249f3582dc3"
     },
     "cellranger": {
       "Package": "cellranger",
@@ -1108,19 +1072,6 @@
       "Repository": "CRAN",
       "Hash": "8106d78941f34855c440ddb946b8f7a5"
     },
-    "fastDummies": {
-      "Package": "fastDummies",
-      "Version": "1.7.3",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "data.table",
-        "stringr",
-        "tibble"
-      ],
-      "Hash": "e0f9c0c051e0e8d89996d7f0c400539f"
-    },
     "fastmap": {
       "Package": "fastmap",
       "Version": "1.1.1",
@@ -1575,16 +1526,6 @@
       ],
       "Hash": "7d7f283939f563670a697165b2cf5560"
     },
-    "gsubfn": {
-      "Package": "gsubfn",
-      "Version": "0.7",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "proto"
-      ],
-      "Hash": "a8ebb0bb0edcf041a7649ee43a0e1735"
-    },
     "gtable": {
       "Package": "gtable",
       "Version": "0.3.4",
@@ -1804,21 +1745,6 @@
       ],
       "Hash": "8954069286b4b2b0d023d1b288dce978"
     },
-    "ivreg": {
-      "Package": "ivreg",
-      "Version": "0.6-2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "Formula",
-        "MASS",
-        "R",
-        "car",
-        "lmtest",
-        "stats"
-      ],
-      "Hash": "3653302c027615a6066a70630ef21a37"
-    },
     "jpeg": {
       "Package": "jpeg",
       "Version": "0.1-10",
@@ -2022,16 +1948,6 @@
       ],
       "Hash": "a2b748e2ada78fe7a8b0f3ab072c3739"
     },
-    "lm.beta": {
-      "Package": "lm.beta",
-      "Version": "1.7-2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "xtable"
-      ],
-      "Hash": "09e504a5f457860795f70739bba15a3e"
-    },
     "lme4": {
       "Package": "lme4",
       "Version": "1.1-35.1",
@@ -2093,20 +2009,6 @@
         "R"
       ],
       "Hash": "7ce2733a9826b3aeb1775d56fd305472"
-    },
-    "mclust": {
-      "Package": "mclust",
-      "Version": "6.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "grDevices",
-        "graphics",
-        "stats",
-        "utils"
-      ],
-      "Hash": "b2aae4a5317fa01aa272c5109ea3ee8e"
     },
     "memoise": {
       "Package": "memoise",
@@ -2170,16 +2072,6 @@
       ],
       "Hash": "f48238f8d4740426ca12f53f27d004dd"
     },
-    "mix": {
-      "Package": "mix",
-      "Version": "1.0-11",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "stats"
-      ],
-      "Hash": "2ed76ae53d246ae88a19420c9d6a55dd"
-    },
     "mnormt": {
       "Package": "mnormt",
       "Version": "2.1.1",
@@ -2239,19 +2131,6 @@
         "stats"
       ],
       "Hash": "17e96668f44a28aef0981d9e17c49b59"
-    },
-    "networkD3": {
-      "Package": "networkD3",
-      "Version": "0.4",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "htmlwidgets",
-        "igraph",
-        "magrittr"
-      ],
-      "Hash": "38310ec4ddb1398359abdd603c151067"
     },
     "nlme": {
       "Package": "nlme",
@@ -2325,24 +2204,6 @@
         "zip"
       ],
       "Hash": "c03b4c18d42da881fb8e15a085c2b9d6"
-    },
-    "pander": {
-      "Package": "pander",
-      "Version": "0.6.5",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "Rcpp",
-        "digest",
-        "grDevices",
-        "graphics",
-        "methods",
-        "stats",
-        "tools",
-        "utils"
-      ],
-      "Hash": "737924139a1e4fc96356ff377c754c35"
     },
     "patchwork": {
       "Package": "patchwork",
@@ -2573,13 +2434,6 @@
         "stats"
       ],
       "Hash": "0d8a15c9d000970ada1ab21405387dee"
-    },
-    "proto": {
-      "Package": "proto",
-      "Version": "1.0.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "5cb1623df69ee6102d011c7f78f5791d"
     },
     "ps": {
       "Package": "ps",
@@ -3259,25 +3113,6 @@
         "vctrs"
       ],
       "Hash": "a84e2cc86d07289b3b6f5069df7a004c"
-    },
-    "tidyLPA": {
-      "Package": "tidyLPA",
-      "Version": "1.1.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "MplusAutomation",
-        "R",
-        "dplyr",
-        "ggplot2",
-        "grid",
-        "gtable",
-        "mclust",
-        "methods",
-        "mix",
-        "tibble"
-      ],
-      "Hash": "7af9d3221c01e9fa6bd9efddb1a25fe7"
     },
     "tidygraph": {
       "Package": "tidygraph",

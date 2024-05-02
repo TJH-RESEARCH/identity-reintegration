@@ -43,21 +43,20 @@ data <- data %>% mutate(latent_group = kmeans_cluster_3)
 
 # DESCRIBE CLUSTERS -------------------------------------------------------
 source(here::here('src/02_analysis/e-describe-groups/visualize-profiles.R'))
-source(here::here('src/02_analysis/e-describe-groups/alluvial-kmeans.R'))
 
 ## Rename the groups for interpretation
 data <-
   data %>% 
   mutate(
     latent_group = 
-      case_when(latent_group == 1 ~ 'Lower ID',
-                latent_group == 3 ~ 'Middle ID',
-                latent_group == 2 ~ 'Higher ID')
+      case_when(latent_group == 1 ~ 'Lower Identity',
+                latent_group == 3 ~ 'Medium Identity',
+                latent_group == 2 ~ 'Higher Identity')
   ) %>% 
   # refactor reference level
   mutate(latent_group = 
            factor(latent_group, 
-                  levels = c('Middle ID', 'Lower ID', 'Higher ID'))
+                  levels = c('Medium Identity', 'Lower Identity', 'Higher Identity'))
          )
 
 

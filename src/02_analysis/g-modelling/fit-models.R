@@ -10,7 +10,7 @@ model_mcarm_2 <-
        race_white + 
        race_black + 
        sex_male +
-       enlisted + 
+       enlisted +
        service_era_post_911 + 
        service_era_vietnam + 
        service_era_persian_gulf +
