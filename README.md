@@ -9,12 +9,13 @@ contributors:
 - licensing
 - data sharing
  
-# Replication Code: Comparing Reintegration by Military Identity: Military Identity and Post-Service Adjustment
+# Replication Code: Comparing Reintegration by Military Identity Clusters: High and Low Military Identity Associated with Worse Post-Service Adjustment
+
 
 
 ## Overview
 
-The code in R Project allows for the replication of tables, figures, stats, graphs, and results used in Comparing Reintegration by Military Identity: Military Identity and Post-Service Adjustment.
+The code in R Project allows for the replication of tables, figures, stats, graphs, and results used in Comparing Reintegration by Military Identity Clusters: High and Low Military Identity Associated with Worse Post-Service Adjustment
 
 
 ## Data Availability and Provenance
