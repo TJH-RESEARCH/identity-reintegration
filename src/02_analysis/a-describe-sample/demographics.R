@@ -14,12 +14,12 @@ demographic_table <-
     # Age ----------------------------------------------------------------------
     age = 
       data %>% 
-      select(years_of_age) %>% 
-      mutate(category = 
-               cut(data$years_of_age, 
-                   breaks = c(18, 34.5, 44.5, 54.5, 64.5, 74.5, 100))) %>% 
-      count(category) %>% 
-      mutate(perc = n / sum(n) * 100, category = as.character(category)),
+      select(age_range) %>% 
+      count(age_range) %>% 
+      mutate(
+        perc = n / sum(n) * 100
+        ) %>% 
+      rename(category = age_range),
     
     # Sex ----------------------------------------------------------------------
     sex = 
@@ -37,7 +37,6 @@ demographic_table <-
     # Education ----------------------------------------------------------------
     education_sample = 
       data %>% 
-      mutate(employment = fct_lump(employment, prop = .05)) %>% 
       group_by(education) %>% 
       count(sort = F) %>% 
       ungroup() %>% 
@@ -67,7 +66,8 @@ demographic_table <-
       rename(category = 1)
     
   ) %>% 
-  mutate(perc = paste(round(perc, 1), "%"))
+  mutate(perc = paste(round(perc, 1), "%")) %>% 
+  mutate(category = str_to_sentence(category))
 
 
 demographic_table[1,1] <- "18 to 34 years old"
@@ -77,7 +77,7 @@ demographic_table[4,1] <- "55 to 64 years old"
 demographic_table[5,1] <- "65 to 74 years old"
 demographic_table[6,1] <- "75 years and older"
 
-demographic_table[12,1] <- "Other sexuality"
+demographic_table[10,1] <- "Other sexuality"
 
 
 

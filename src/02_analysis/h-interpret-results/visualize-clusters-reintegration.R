@@ -2,8 +2,8 @@ library(viridis)
 
 profile_reintegration <-
   data %>% 
-  mutate(latent_group = 
-           factor(latent_group, 
+  mutate(cluster = 
+           factor(cluster, 
                   levels = c('Lower Identity', 
                              'Medium Identity', 
                              'Higher Identity'))
@@ -18,26 +18,26 @@ profile_reintegration <-
          mcarm_resentment_regret, 
          mcarm_purpose_connection, 
          mcarm_beliefs_about_civilians, 
-         latent_group) %>% 
-  group_by(latent_group) %>% 
+         cluster) %>% 
+  group_by(cluster) %>% 
   summarise(across(everything(), ~ mean(.x))) %>% 
-  pivot_longer(!latent_group) %>% 
+  pivot_longer(!cluster) %>% 
   ggplot(
     aes(
       x     = name, 
       y     = value, 
-      color = latent_group,
-      group = latent_group),
+      color = cluster,
+      group = cluster),
     alpha = .9) + 
   geom_line(
     aes(
-      linetype = latent_group, 
-      color    = latent_group),
+      linetype = cluster, 
+      color    = cluster),
     alpha = .9) +
   geom_point(
     aes(
-      shape = latent_group,
-      color = latent_group),
+      shape = cluster,
+      color = cluster),
     size  = 4,
     alpha = .9) + 
   

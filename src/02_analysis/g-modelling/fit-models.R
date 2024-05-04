@@ -2,11 +2,11 @@
 
 
 # Military Identity --------------------------------------------------------------
-model_mcarm_1 <- data %>% lm(mcarm_total ~ latent_group, .)
+model_mcarm_1 <- data %>% lm(mcarm_total ~ cluster, .)
 model_mcarm_2 <- 
   data %>% 
   lm(mcarm_total ~ 
-       latent_group +
+       cluster +
        race_white + 
        race_black + 
        sex_male +
@@ -24,11 +24,11 @@ aov_mcarm_1 <- aov(model_mcarm_2)
 
 # Beliefs About Civilians --------------------------------------------------------------
 
-model_civilians_1 <- data %>% lm(mcarm_beliefs_about_civilians ~ latent_group, .)
+model_civilians_1 <- data %>% lm(mcarm_beliefs_about_civilians ~ cluster, .)
 model_civilians_2 <- 
   data %>% 
   lm(mcarm_beliefs_about_civilians ~ 
-       latent_group +
+       cluster +
        race_white + 
        race_black + 
        sex_male +
@@ -47,11 +47,11 @@ aov_civilians_2 <- aov(model_civilians_2)
 
 # Military Identity --------------------------------------------------------------
 
-model_purpose_1 <- data %>% lm(mcarm_purpose_connection ~ latent_group, .)
+model_purpose_1 <- data %>% lm(mcarm_purpose_connection ~ cluster, .)
 model_purpose_2 <- 
   data %>% 
   lm(mcarm_purpose_connection ~ 
-       latent_group +
+       cluster +
        race_white + 
        race_black + 
        sex_male +
@@ -71,11 +71,11 @@ aov_purpose_2 <- aov(model_purpose_2)
 
 # Military Identity --------------------------------------------------------------
 
-model_help_seeking_1 <- data %>% lm(mcarm_help_seeking ~ latent_group, .)
+model_help_seeking_1 <- data %>% lm(mcarm_help_seeking ~ cluster, .)
 model_help_seeking_2 <- 
   data %>% 
   lm(mcarm_help_seeking ~ 
-       latent_group +
+       cluster +
        race_white + 
        race_black + 
        sex_male +
@@ -93,11 +93,11 @@ aov_help_seeking_2 <- aov(model_help_seeking_2)
 
 # RESENTMENT AND REGRET -------------------------------------------------------
 
-model_resent_1 <- data %>% lm(mcarm_resentment_regret ~ latent_group, .)
+model_resent_1 <- data %>% lm(mcarm_resentment_regret ~ cluster, .)
 model_resent_2 <- 
   data %>% 
   lm(mcarm_resentment_regret ~ 
-       latent_group +
+       cluster +
        race_white + 
        race_black + 
        sex_male +
@@ -118,11 +118,11 @@ aov_resent_2 <- aov(model_resent_2)
 
 # REGIMENTATION --------------------------------------------------------------
 
-model_regiment_1 <- data %>% lm(mcarm_regimentation ~ latent_group, .)
+model_regiment_1 <- data %>% lm(mcarm_regimentation ~ cluster, .)
 model_regiment_2 <- 
   data %>% 
   lm(mcarm_regimentation ~ 
-       latent_group +
+       cluster +
        race_white + 
        race_black + 
        sex_male +

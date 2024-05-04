@@ -2,8 +2,8 @@ library(viridis)
 
 plot_profiles <-
   data %>% 
-  mutate(latent_group = 
-           factor(latent_group, 
+  mutate(cluster = 
+           factor(cluster, 
                   levels = c('Lower Identity', 
                              'Medium Identity', 
                              'Higher Identity'))
@@ -22,24 +22,24 @@ plot_profiles <-
          wis_interdependent_total,
          wis_private_regard_total,
          wis_public_regard_total,
-         latent_group) %>% 
-  group_by(latent_group) %>% 
-  mutate(latent_group = factor(latent_group)) %>% 
+         cluster) %>% 
+  group_by(cluster) %>% 
+  mutate(cluster = factor(cluster)) %>% 
   summarise(across(everything(), ~ mean(.x))) %>% 
-  pivot_longer(!latent_group) %>% 
+  pivot_longer(!cluster) %>% 
   ggplot(
     aes(
       name, 
       value, 
-      color = latent_group,
-      group = latent_group)) + 
+      color = cluster,
+      group = cluster)) + 
   geom_point(
     aes(
-      shape = latent_group), 
+      shape = cluster), 
     size = 4) + 
   geom_line(
     aes(
-      linetype = latent_group)) +
+      linetype = cluster)) +
   scale_color_manual(values = c('#440154', '#3b528b', '#5ec962')) +
   #scale_color_viridis(option = 'C', discrete = TRUE) +
   theme_classic() +

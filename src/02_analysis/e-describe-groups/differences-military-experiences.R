@@ -18,8 +18,8 @@ clusters_table <-
          years_service,
          years_separation,
          n_deploy,
-         latent_group) %>% 
-  group_by(latent_group) %>% 
+         cluster) %>% 
+  group_by(cluster) %>% 
   summarise(across(everything(), ~ sum(.x) / n()),
              n = n()) %>% mutate(perc = c(1)) %>% 
   bind_rows(
@@ -43,10 +43,10 @@ data %>%
          years_service,
          years_separation,
          n_deploy,
-         latent_group) %>% 
+         cluster) %>% 
   summarise(across(where(is.numeric), ~ sum(.x) / n()),
              n = n()) %>% 
-  mutate(perc = c(1), latent_group = 'Total'),
+  mutate(perc = c(1), cluster = 'Total'),
 
 
 ) %>% mutate(across(where(is.numeric), ~ round(.x, 2))) %>% 

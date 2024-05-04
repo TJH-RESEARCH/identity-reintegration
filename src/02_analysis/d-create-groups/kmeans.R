@@ -15,24 +15,41 @@ data_cluster_wis <-
 
 
 # Elbow method
+plot_elbow <-  
 fviz_nbclust(data_cluster_wis, kmeans, method = "wss") +
     geom_vline(xintercept = 3, linetype = 2)+
-  labs(subtitle = "k-Means Clustering: Elbow method suggests 3-cluster solution")
+    labs(subtitle = "k-Means Clustering: Elbow method suggests 3-cluster solution")
 
+ggsave(plot = plot_elbow,
+       path = here::here('output/figures'),
+       filename = 'elbow_plot.jpg'
+      )
 
 # Silhouette method
-fviz_nbclust(data_cluster_wis, kmeans, method = "silhouette")+
-  labs(subtitle = "k-Means Clustering: Silhouette method suggests 2-cluster solution")
+plot_silhouette <-
+  fviz_nbclust(data_cluster_wis, kmeans, method = "silhouette")+
+    labs(subtitle = "k-Means Clustering: Silhouette method suggests 2-cluster solution")
 
+ggsave(plot = plot_silhouette,
+       path = here::here('output/figures'),
+       filename = 'silhouette_plot.jpg'
+)
 
 # Gap statistic
-fviz_nbclust(data_cluster_wis, 
-             kmeans, 
-             nstart = 25,  
-             print.summary = T, 
-             method = "gap_stat", 
-             nboot = 500)  +
-  labs(subtitle = "k-Means Clustering: Gap statistic method")
+plot_gap_stat <-
+  fviz_nbclust(data_cluster_wis, 
+               kmeans, 
+               nstart = 25,  
+               print.summary = T, 
+               method = "gap_stat", 
+               nboot = 500)  +
+   labs(subtitle = "k-Means Clustering: Gap statistic method")
+
+ggsave(plot = plot_gap_stat,
+       path = here::here('output/figures'),
+       filename = 'gap_stat_plot.jpg'
+)
+
 ## Gap statistic suggests 1 cluster....which isn't really a cluster now is it
 ## Basically, this is an inability to reject the null hypo that the data 
 ## clusters into latent groups. 
@@ -81,14 +98,9 @@ results_kmeans_table %>% write_csv('output/stats/kmeans-fit.csv')
 
 
 
-# Let's see the sample size to 
-# find out if they are useful for the analysis:
 
 
-
-
-# what are the n's group balance ------------------------------------------
-
+# group balance ------------------------------------------
 results_kmeans_2 <- kmeans(data_cluster_wis, centers = 2)
 results_kmeans_3 <- kmeans(data_cluster_wis, centers = 3)
 
@@ -98,9 +110,7 @@ data <-
   mutate(kmeans_cluster_2 = factor(results_kmeans_2$cluster), 
          kmeans_cluster_3 = factor(results_kmeans_3$cluster)) 
 
-data %>% count(kmeans_cluster_2)
-data %>% count(kmeans_cluster_3)
+data %>% count(kmeans_cluster_2) %>% print()
+data %>% count(kmeans_cluster_3) %>% print()
 
-
-# Nice. Either one looks useful for the analysis. 
 

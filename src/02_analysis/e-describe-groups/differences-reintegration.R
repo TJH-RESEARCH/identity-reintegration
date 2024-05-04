@@ -1,7 +1,7 @@
 
 # Explore Differences in Reintegration  -----------------------------
 data %>% 
-  group_by(latent_group) %>% 
+  group_by(cluster) %>% 
   summarize(n = n(), 
             m_mcarm = mean(mcarm_total),
             m_purp = mean(mcarm_purpose_connection),
@@ -15,7 +15,7 @@ data %>%
 
 # Any different in variance of outcome across groups? ---------------------
 data %>% 
-  group_by(latent_group) %>% 
+  group_by(cluster) %>% 
   summarize(n = n(), 
             sd_mcarm = sd(mcarm_total),
             sd_purp = sd(mcarm_purpose_connection),
