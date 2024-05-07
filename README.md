@@ -26,6 +26,8 @@ This paper uses original data collected by the first author as part of a **surve
 
 
 ## Computational requirements
+To replicate the analysis, run the entire `0-replicate.R` script.  
+
 Replicating this code will require a recent version of R (version 4.4.0 or later). You can download R from https://cran.rstudio.com
 
 If you already have R installed, running the "`renv/activate.R`" will download the dependent packages. It relies on the `renv` package, which you can read about at https://rstudio.github.io/renv/. This script is run as a part of the "replicate.R" file which runs the entire project. 
@@ -42,7 +44,7 @@ The data analysis scripts are ordered in seven stages: desciptives, graphic mode
 
 | Folder                                | File                              | Purpose                                                 |
 |---------------------------------------|-----------------------------------|---------------------------------------------------------|
-| src/                                  | replicate.R                       | Runs all of the scripts. Replicates analysis.           |
+| src/                                  | 0-replicate.R                     | Runs all of the scripts. Replicates analysis.           |
 | src/01_config                         | themes.R                          | Set the style of visualizations.                        |
 | src/01_config                         | session-info.R                    | Saves the session information.                          |
 | src/01_config                         | create-output-folders.R           | Configures the output folders to save results in.       |
