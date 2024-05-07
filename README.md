@@ -39,7 +39,7 @@ The code was last run on a **Apple M1 Chip MacBook Air MacOS version Sonoma 14.2
 
 There are three groups of programs in this project. The first configures the project (for instance, by setting a standard theme for visualizations). The second analyzes the data. Data preparation was performed separately.
 
-The data analysis scripts are ordered in seven stages: desciptives, graphic modelling, psychometrics, examining variables, modelling, ionterpreting results, and robustness analysis.  
+The data analysis scripts are ordered in eight stages: descriptive analysis, graphic modelling, psychometrics, k-means clustering analysis, descriptive analysis by cluster, examining variables, modelling, and interpreting results.  
 
 
 | Folder                                | File                              | Purpose                                                 |
