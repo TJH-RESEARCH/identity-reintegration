@@ -68,7 +68,10 @@ continuous_table %>% kableExtra::kbl(format = 'latex') %>%
   append_results_tables()
 
 # Write file --------------------------------------------------------------
-continuous_table %>% write_csv(here::here('output/tables/continuous-table.csv'))
+continuous_table %>% write_csv(paste0(here::here(), '/output/tables/continuous-table-', clustering, '.csv'))
+
+
+
 
 # Remove variable from environment
 rm(continuous_table)

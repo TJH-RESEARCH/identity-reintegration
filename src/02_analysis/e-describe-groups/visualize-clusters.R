@@ -1,13 +1,9 @@
 library(viridis)
 
+
+
 plot_profiles <-
   data %>% 
-  mutate(cluster = 
-           factor(cluster, 
-                  levels = c('Lower Identity', 
-                             'Medium Identity', 
-                             'Higher Identity'))
-  ) %>% 
   mutate(wis_skills_total = wis_skills_total / 3,
          wis_centrality_total = wis_centrality_total / 4,
          wis_connection_total = wis_connection_total / 3,
@@ -24,7 +20,7 @@ plot_profiles <-
          wis_public_regard_total,
          cluster) %>% 
   group_by(cluster) %>% 
-  mutate(cluster = factor(cluster)) %>% 
+  mutate(cluster = factor(cluster)) %>%
   summarise(across(everything(), ~ mean(.x))) %>% 
   pivot_longer(!cluster) %>% 
   ggplot(
@@ -65,6 +61,6 @@ plot_profiles <-
 plot_profiles %>% print()
 
 ggsave(plot = plot_profiles,
-       filename = paste0('output/figures/profiles-identity.jpg'))
+       filename = paste0('output/figures/profiles-identity-', clustering, '.jpg'))
  
 #rm(plot_profiles)

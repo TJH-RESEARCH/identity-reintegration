@@ -12,6 +12,24 @@ source(here::here('src/01_config/functions/function-append-results.R'))
 ## Import the clean the data
 data <- read_csv(here::here('data/data_main_replicate.csv'))
 
+set.seed(999)
+
+train <-
+  sample(nrow(data),
+         size = round(nrow(data) * .66, 0),
+         replace = F)
+
+data <-
+  data %>% 
+  mutate(id = c(1:nrow(data)),
+         train = if_else(id %in% train, 1, 0)
+  )
+  
+data_train <- data %>% filter(train == 1)
+data_test <- data %>% filter(train == 0)
+
+#data <- data_train
+data <- data_test
 
 # DESCRIBE SAMPLE ----------------------------------------------------------
 source(here::here('src/02_analysis/a-describe-sample/sample-size.R'))
@@ -38,25 +56,13 @@ source(here::here('src/02_analysis/d-create-groups/kmeans.R'))
 
 # CHOOSE GROUPING ---------------------------------------------------------
 ## Set K-Means 3-cluster as the latent group for the main data analysis
-data <- data %>% mutate(cluster = kmeans_cluster_3)
+clustering <- '3-cluster'
 
 
 # DESCRIBE CLUSTERS -------------------------------------------------------
 
-## Rename the groups for interpretation
-data <-
-  data %>% 
-  mutate(
-    cluster = 
-      case_when(cluster == 1 ~ 'Lower Identity',
-                cluster == 3 ~ 'Medium Identity',
-                cluster == 2 ~ 'Higher Identity')
-  ) %>% 
-  # refactor reference level
-  mutate(cluster = 
-           factor(cluster, 
-                  levels = c('Medium Identity', 'Lower Identity', 'Higher Identity'))
-         )
+## Label the clusters for interpretation
+source(here::here('src/02_analysis/d-create-groups/label-clusters.R'))
 
 ## Run the visualization  with the cluster labels:
 source(here::here('src/02_analysis/e-describe-groups/visualize-clusters.R'))
@@ -81,7 +87,7 @@ source(here::here('src/02_analysis/f-examine-variables/plot-pairs.R'))
 # SPECIFY MODELS ----------------------------------------------------
 source(here::here('src/02_analysis/g-modelling/fit-models.R'))
 source(here::here('src/02_analysis/g-modelling/model-diagnostics.R'))
-source(here::here('src/02_analysis/g-modelling/calculate-robust-se.R'))
+source(here::here('eeeeeesrc/02_analysis/g-modelling/calculate-robust-se.R'))
 
 
 # INTERPRET MODELS --------------------------------------------------------
@@ -90,6 +96,9 @@ source(here::here('src/02_analysis/h-interpret-results/make-results-tables-full.
 source(here::here('src/02_analysis/h-interpret-results/make-results-tables-mcarm.R'))
 source(here::here('src/02_analysis/h-interpret-results/visualize-coefficients.R'))
 source(here::here('src/02_analysis/h-interpret-results/visualize-clusters-reintegration.R'))
+
+
+source(here::here('src/03-replicate-2-cluster.R'))
 
 
 # END ---------------------------------------------------------------------

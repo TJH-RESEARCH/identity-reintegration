@@ -3,6 +3,16 @@
 source(here::here('src/01_config/functions/function-append-results.R'))
 
 
+# Label Coefficients Depending on number of clusters ----------------------
+if (clustering == '3-cluster'){
+  coef_names <- c('(Intercept)','Lower Identity', 'Higher Identity')
+} else if(clustering == '2-cluster'){
+  coef_names <- c('(Intercept)','Lower Identity')
+}
+
+
+
+# -------------------------------------------------------------------------
 table <- 
   texreg::texreg(
     list(
@@ -19,9 +29,7 @@ table <-
     ci.test = NA,
     sideways = F, 
     custom.model.names = c('Civilians', 'Help Seeking', 'Purpose','Resent', 'Regiment'),
-    custom.coef.names = c('(Intercept)', #1
-                          'Lower Identity',    #2
-                          'Higher Identity'),
+    custom.coef.names = coef_names, 
     caption = paste("Bivariate Regressions: All Outcomes"), 
     caption.above = T
   )
@@ -44,12 +52,25 @@ gof_stats <- texreg::texreg(
 )
 
 
-results_table <- c(read_lines(table)[1:14], read_lines(gof_stats, skip = 14))
+
+# Make response table length given number of clusters ---------------------
+
+
+
+
+if (clustering == '3-cluster'){
+  table_length <- 14
+} else if(clustering == '2-cluster'){
+  table_length <- 12
+}
+
+
+results_table <- c(read_lines(table)[1:table_length], read_lines(gof_stats, skip = table_length)[c(1,2,5,6,7,8,9,10)])
 results_table %>% print()
 # Write -------------------------------------------------------------------
 write_lines(x = results_table,
-            file = paste0(here::here(), '/output/tables/bivariate-tables.txt'))
+            file = paste0(here::here(), '/output/tables/bivariate-tables-', clustering, '.txt'))
 
 append_results_tables(results_table)
-rm(results_table)
+erm(results_table)
   

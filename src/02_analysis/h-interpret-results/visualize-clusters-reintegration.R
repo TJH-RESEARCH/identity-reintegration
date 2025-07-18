@@ -75,12 +75,13 @@ profile_reintegration <-
 
 profile_reintegration %>% print()
 
-ggsave(filename = paste0('output/figures/profiles-reintegration.jpg'),
+ggsave(filename = paste0('output/figures/profiles-reintegration-', clustering, '.jpg'),
   plot = profile_reintegration)
 
 library(patchwork)
 profile_reintegration + plot_profiles
-  ggsave(filename = paste0('output/figures/profiles-identity-reintegration.jpg'))
+  ggsave(filename = paste0('output/figures/profiles-identity-reintegration-', clustering, '.jpg'))
 
 
 rm(profile_reintegration)
+

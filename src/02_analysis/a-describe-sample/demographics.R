@@ -67,7 +67,8 @@ demographic_table <-
     
   ) %>% 
   mutate(perc = paste(round(perc, 1), "%")) %>% 
-  mutate(category = str_to_sentence(category))
+  mutate(category = str_to_sentence(category)) %>% 
+  mutate(category = str_to_title(category))
 
 
 demographic_table[1,1] <- "18 to 34 years old"
@@ -93,13 +94,16 @@ demographic_table %>%
   kableExtra::kable_classic(full_width = F, html_font = "times")
 
 # Save --------------------------------------------------------------------
+
+
 demographic_table %>% kableExtra::kbl(format = 'latex') %>% 
   write_lines(here::here('output/tables/demographics-latex.txt'))
 
-demographic_table %>% kableExtra::kbl(format = 'latex') %>%
-  append_results_tables()
-
 demographic_table %>% readr::write_csv(here::here('output/tables/demographics.csv'))
+
+demographic_table %>% kableExtra::kbl(format = 'latex') %>%
+  write_lines(here::here('output/results/results-table.txt'))
+
 
 
 # Message -----------------------------------------------------------------
@@ -111,12 +115,4 @@ rm(count_perc, create_percentage_table, demographic_table)
 
 
 
-
-# Graphs ------------------------------------------------------------------
-data %>% ggplot(aes(years_of_age)) + geom_density()
-data %>% ggplot(aes(branch)) + geom_bar()
-data %>% ggplot(aes(service_era)) + geom_bar()
-ggplot(data, aes(x = '', y = 'identity', fill = branch)) + geom_col() + coord_polar(theta = "y")
-data %>% ggplot(aes(highest_rank)) + geom_bar()
-ggplot(data, aes(x = '', y = 'identity', fill = highest_rank)) + geom_col() + coord_polar(theta = "y")
 

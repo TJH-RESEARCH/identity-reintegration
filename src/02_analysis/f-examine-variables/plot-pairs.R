@@ -36,8 +36,10 @@ pairs_wis <-
 
 pairs_wis %>% print()
 
-ggsave(plot = pairs_wis, filename = here::here('output/figures/pairs-wis.jpg'))
+ggsave(plot = pairs_wis, filename = paste0(here::here(), '/output/figures/pairs-wis-', clustering, '.jpg'))
 rm(pairs_wis)
+
+
 
 
 

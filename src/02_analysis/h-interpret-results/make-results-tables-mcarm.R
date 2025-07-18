@@ -54,7 +54,8 @@ results_table <- c(read_lines(table)[1:23], read_lines(gof_stats, skip = 38))
 results_table %>% print()
 # Write -------------------------------------------------------------------
 write_lines(x = results_table,
-            file = paste0(here::here(), '/output/tables/mcarm-tables.txt'))
+            file = paste0(here::here(), '/output/tables/mcarm-tables-', clustering, '.txt'))
 
 append_results_tables(results_table)
 rm(results_table)
+

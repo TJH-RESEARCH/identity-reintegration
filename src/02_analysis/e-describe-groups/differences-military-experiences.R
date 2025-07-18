@@ -63,7 +63,7 @@ data %>%
 clusters_table %>% print()
 # Write -------------------------------------------------------------------
 write_lines(x = clusters_table,
-            file = paste0(here::here(), '/output/tables/clusters-tables.txt'))
+            file = paste0(here::here(), '/output/tables/clusters-tables-', clustering, '.txt'))
 
 append_results_tables(clusters_table)
 rm(clusters_table)

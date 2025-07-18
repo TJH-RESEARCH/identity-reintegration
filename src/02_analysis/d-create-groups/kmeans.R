@@ -80,6 +80,8 @@ results_kmeans_limited =
 
 results_kmeans_limited$All.index
 results_kmeans_limited$Best.nc[1,] %>% tibble() %>% rename(best = 1) %>% as.data.frame() %>%  tibble()
+results_kmeans_limited$Best.nc[1,] %>% tibble() %>% rename(best = 1) %>% as.data.frame() %>%  tibble() %>% count(best)
+
 
 temp <- results_kmeans_limited$All.index[1:2,] %>% 
   as.data.frame() %>% t() %>% as.data.frame()
@@ -87,7 +89,7 @@ temp <- results_kmeans_limited$All.index[1:2,] %>%
 results_kmeans_table <- 
 temp %>% tibble() %>% 
   mutate(name = temp %>% rownames(),
-         best = results_kmeans_limited$Best.nc[1,]) %>% 
+         best = results_kmeans_limited$Best.nc[1,]) %>% view()
   mutate(best = ifelse(name == 'Gamma', 3, best), # gamma max
          best = ifelse(name == 'Gplus', 3, best), # Gplus min
          best = ifelse(name == 'SDbw', 3, best), # SDbw min
