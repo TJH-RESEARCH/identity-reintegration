@@ -14,34 +14,58 @@ demographic_table <-
     # Age ----------------------------------------------------------------------
     age = 
       data %>% 
-      select(age_range) %>% 
-      count(age_range) %>% 
-      mutate(
-        perc = n / sum(n) * 100
-        ) %>% 
-      rename(category = age_range),
+      select(years_of_age) %>% 
+      mutate(category = 
+               cut(data$years_of_age, 
+                   breaks = c(18, 34.5, 44.5, 54.5, 64.5, 74.5, 100))) %>% 
+      count(category) %>% 
+      mutate(perc = n / sum(n) * 100, category = as.character(category)) %>% 
+      mutate(category = 
+               c("18 to 34 years old",
+                 "35 to 44 years old",
+                 "45 to 54 years old",
+                 "55 to 64 years old",
+                 "65 to 74 years old",
+                 "75 years and older"
+               )
+      ),
     
     # Sex ----------------------------------------------------------------------
     sex = 
       data %>% 
       group_by(sex) %>% 
-      count_perc(sort = T),
+      count_perc(sort = T) %>% 
+      mutate(category = c('Male', 'Female')),
     
     # Sexual Orientation -------------------------------------------------------
     sexual_orientation_sample =
       data %>% 
       mutate(sexual_orientation = fct_lump_prop(sexual_orientation, prop = .1)) %>% 
       group_by(sexual_orientation) %>% 
-      count_perc(sort = T),
+      count_perc(sort = T) %>% 
+      mutate(category = c('Straight/Heterosexual', 'Other sexuality')),
     
     # Education ----------------------------------------------------------------
     education_sample = 
       data %>% 
+      mutate(employment = fct_lump(employment, prop = .05)) %>% 
       group_by(education) %>% 
       count(sort = F) %>% 
+      mutate(education = 
+               factor(education, 
+                      levels = c('High school diploma or equivalent',
+                                 'Some college',
+                                 'Associates degree',
+                                 'Bachelors degree',
+                                 'Masters degree',
+                                 'Applied or professional doctorate',
+                                 'Doctorate'),
+                      ordered = TRUE)
+      ) %>% 
       ungroup() %>% 
       mutate(perc = n / sum(n) * 100) %>% 
-      rename(category = 1),
+      rename(category = 1) %>% 
+      arrange(category),
     
     # Race ---------------------------------------------------------------------
     race = data %>% group_by(race) %>% count_perc(T),
@@ -66,45 +90,14 @@ demographic_table <-
       rename(category = 1)
     
   ) %>% 
-  mutate(perc = paste(round(perc, 1), "%")) %>% 
-  mutate(category = str_to_sentence(category)) %>% 
-  mutate(category = str_to_title(category))
-
-
-demographic_table[1,1] <- "18 to 34 years old"
-demographic_table[2,1] <- "35 to 44 years old"
-demographic_table[3,1] <- "45 to 54 years old"
-demographic_table[4,1] <- "55 to 64 years old"
-demographic_table[5,1] <- "65 to 74 years old"
-demographic_table[6,1] <- "75 years and older"
-
-demographic_table[10,1] <- "Other sexuality"
-
+  mutate(perc = paste(round(perc, 1), "%"))
 
 
 # Print -------------------------------------------------------------------
 demographic_table %>% print(n = 100)
 
-demographic_table %>% 
-  kableExtra::kbl(
-    caption = "Table 1: Sample Demographics",
-    format = "html",
-    col.names = c("Category","n","%"),
-    align = "l") %>%
-  kableExtra::kable_classic(full_width = F, html_font = "times")
-
 # Save --------------------------------------------------------------------
-
-
-demographic_table %>% kableExtra::kbl(format = 'latex') %>% 
-  write_lines(here::here('output/tables/demographics-latex.txt'))
-
 demographic_table %>% readr::write_csv(here::here('output/tables/demographics.csv'))
-
-demographic_table %>% kableExtra::kbl(format = 'latex') %>%
-  write_lines(here::here('output/results/results-table.txt'))
-
-
 
 # Message -----------------------------------------------------------------
 message('Demographic table saved to `output/tables/sample-demographics.csv`')
