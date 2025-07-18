@@ -4,8 +4,6 @@ n <- tibble(n = nrow(data))
 
 
 print(n)
-n %>% kableExtra::kbl()
-
 n %>% write_csv(here::here('output/stats/sample-size.csv'))
 
 

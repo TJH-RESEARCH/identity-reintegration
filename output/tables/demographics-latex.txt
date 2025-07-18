@@ -3,70 +3,70 @@
 \hline
 category & n & perc\\
 \hline
-18 to 34 years old & 11 & 7 \%\\
+18 to 34 years old & 13 & 5.4 \%\\
 \hline
-35 to 44 years old & 22 & 13.9 \%\\
+35 to 44 years old & 31 & 12.9 \%\\
 \hline
-45 to 54 years old & 18 & 11.4 \%\\
+45 to 54 years old & 30 & 12.5 \%\\
 \hline
-55 to 64 years old & 28 & 17.7 \%\\
+55 to 64 years old & 45 & 18.8 \%\\
 \hline
-65 to 74 years old & 40 & 25.3 \%\\
+65 to 74 years old & 58 & 24.2 \%\\
 \hline
-75 years and older & 39 & 24.7 \%\\
+75 years and older & 63 & 26.2 \%\\
 \hline
-Male & 108 & 68.4 \%\\
+Male & 173 & 72.1 \%\\
 \hline
-Female & 50 & 31.6 \%\\
+Female & 67 & 27.9 \%\\
 \hline
-Straight & 143 & 90.5 \%\\
+Straight & 222 & 92.5 \%\\
 \hline
-Other sexuality & 15 & 9.5 \%\\
+Other sexuality & 18 & 7.5 \%\\
 \hline
-Applied Or Professional Doctorate & 3 & 1.9 \%\\
+Applied Or Professional Doctorate & 4 & 1.7 \%\\
 \hline
-Associates Degree & 29 & 18.4 \%\\
+Associates Degree & 43 & 17.9 \%\\
 \hline
-Bachelors Degree & 41 & 25.9 \%\\
+Bachelors Degree & 57 & 23.8 \%\\
 \hline
-Doctorate & 2 & 1.3 \%\\
+Doctorate & 2 & 0.8 \%\\
 \hline
-High School Diploma Or Equivalent & 18 & 11.4 \%\\
+High School Diploma Or Equivalent & 35 & 14.6 \%\\
 \hline
-Masters Degree & 22 & 13.9 \%\\
+Masters Degree & 35 & 14.6 \%\\
 \hline
-Some College & 43 & 27.2 \%\\
+Some College & 64 & 26.7 \%\\
 \hline
-White & 126 & 79.7 \%\\
+White & 192 & 80 \%\\
 \hline
-Black Or African American & 14 & 8.9 \%\\
+Black Or African American & 23 & 9.6 \%\\
 \hline
-Multiple & 8 & 5.1 \%\\
+Multiple & 11 & 4.6 \%\\
 \hline
-Hispanic, Latino, Or Spanish Origin & 5 & 3.2 \%\\
+Hispanic, Latino, Or Spanish Origin & 8 & 3.3 \%\\
 \hline
-Some Other Race, Ethnicity, Or Origin & 3 & 1.9 \%\\
+Some Other Race, Ethnicity, Or Origin & 3 & 1.2 \%\\
 \hline
-American Indian Or Alaska Native & 1 & 0.6 \%\\
+Asian & 2 & 0.8 \%\\
 \hline
-Asian & 1 & 0.6 \%\\
+American Indian Or Alaska Native & 1 & 0.4 \%\\
 \hline
-Retired & 84 & 53.2 \%\\
+Retired & 130 & 54.2 \%\\
 \hline
-Full Time & 41 & 25.9 \%\\
+Full Time & 67 & 27.9 \%\\
 \hline
-Unemployed & 15 & 9.5 \%\\
+Unemployed & 20 & 8.3 \%\\
 \hline
-Part Time & 11 & 7 \%\\
+Part Time & 16 & 6.7 \%\\
 \hline
-Other & 7 & 4.4 \%\\
+Other & 7 & 2.9 \%\\
 \hline
-Married & 99 & 62.7 \%\\
+Married & 153 & 63.7 \%\\
 \hline
-Divorced & 29 & 18.4 \%\\
+Divorced & 41 & 17.1 \%\\
 \hline
-Never Married & 22 & 13.9 \%\\
+Never Married & 30 & 12.5 \%\\
 \hline
-Widowed & 8 & 5.1 \%\\
+Widowed & 16 & 6.7 \%\\
 \hline
 \end{tabular}

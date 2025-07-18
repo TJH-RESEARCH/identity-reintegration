@@ -1,5 +1,4 @@
 # PACKAGES -----------------------------------------------------------
-source(here::here('renv/activate.R'))
 library(tidyverse)
 
 
@@ -11,25 +10,6 @@ source(here::here('src/01_config/functions/function-append-results.R'))
 # DATA SET MANAGEMENT -----------------------------------------------------------
 ## Import the clean the data
 data <- read_csv(here::here('data/data_main_replicate.csv'))
-
-set.seed(999)
-
-train <-
-  sample(nrow(data),
-         size = round(nrow(data) * .66, 0),
-         replace = F)
-
-data <-
-  data %>% 
-  mutate(id = c(1:nrow(data)),
-         train = if_else(id %in% train, 1, 0)
-  )
-  
-data_train <- data %>% filter(train == 1)
-data_test <- data %>% filter(train == 0)
-
-#data <- data_train
-data <- data_test
 
 # DESCRIBE SAMPLE ----------------------------------------------------------
 source(here::here('src/02_analysis/a-describe-sample/sample-size.R'))
