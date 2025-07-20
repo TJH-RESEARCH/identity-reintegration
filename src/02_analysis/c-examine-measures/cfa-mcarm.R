@@ -23,14 +23,17 @@ fit_mcarm <-
               ordered = F, 
               estimator = 'MLR')
 
-fit_mcarm %>% summary(fit.measures = T, standardized = T)
+fit_mcarm %>% summary(fit.measures = TRUE, standardized = TRUE)
 fit_mcarm %>% fitMeasures(c("cfi", "gfi", 'agfi', 'rmr', 'rmsea', 'srmr', 'nfi', 'tli'))
 
 reliability_mcarm <-
-  fit_mcarm %>% semTools::reliability(return.total = T) %>% 
+  fit_mcarm %>% 
+    semTools::reliability(return.total = T) %>% 
     as.data.frame() %>% tibble() %>% 
     mutate(stat = c('alpha', 'omega', 'omega2', 'omega3', 'avevar')) %>% 
     pivot_longer(!stat)
+
+
 
 reliability_mcarm %>% print(n = 50)
 reliability_mcarm %>% write_csv('output/stats/reliability-mcarm.csv')

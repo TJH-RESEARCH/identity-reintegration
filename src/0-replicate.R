@@ -9,7 +9,7 @@ source(here::here('src/01_config/functions/function-append-results.R'))
 
 # DATA SET MANAGEMENT -----------------------------------------------------------
 ## Import the clean the data
-data <- read_csv(here::here('data/data_main_moral_injury_identity.csv'))
+data <- read_csv(here::here('data/data_main_replicate.csv'))
 
 # DESCRIBE SAMPLE ----------------------------------------------------------
 source(here::here('src/02_analysis/a-describe-sample/sample-size.R'))

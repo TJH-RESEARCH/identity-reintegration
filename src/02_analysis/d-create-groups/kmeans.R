@@ -2,57 +2,55 @@
 library(factoextra)
 library(NbClust)
 
-set.seed(10001)
 
-# Select WIS Data ---------------------------------------------------------
+set.seed(10001) # to reproduce
+
+# Select WIS Data --------------------------------------------------------------
 data_cluster_wis <- 
   data %>% 
   select(starts_with('wis') & ends_with('total') & !wis_total) %>% 
   scale()
 
 
-# Determine the number of clusters ----------------------------------------
+# Determine the best fitting number of clusters --------------------------------
 
-
-# Elbow method
-plot_elbow <-  
+## Elbow method
+(plot_elbow <-  
 fviz_nbclust(data_cluster_wis, kmeans, method = "wss") +
-    geom_vline(xintercept = 3, linetype = 2)+
-    labs(subtitle = "k-Means Clustering: Elbow method suggests 3-cluster solution")
-
-ggsave(plot = plot_elbow,
-       path = here::here('output/figures'),
-       filename = 'elbow_plot.jpg'
+    geom_vline(xintercept = 3, linetype = 2) +
+    labs(
+      title = "The elbow method is a little ambiguous",
+      subtitle = "But 3 appears to be the elbow"
       )
-
-# Silhouette method
-plot_silhouette <-
-  fviz_nbclust(data_cluster_wis, kmeans, method = "silhouette")+
-    labs(subtitle = "k-Means Clustering: Silhouette method suggests 2-cluster solution")
-
-ggsave(plot = plot_silhouette,
-       path = here::here('output/figures'),
-       filename = 'silhouette_plot.jpg'
 )
 
-# Gap statistic
+ggsave(plot = plot_elbow, path = here::here('output/figures'), filename = 'elbow_plot.jpg')
+
+
+## Silhouette method
+(plot_silhouette <-
+  fviz_nbclust(data_cluster_wis, kmeans, method = "silhouette")+
+    labs(title = "Silouette suggests 2 clusters")
+)
+  
+ggsave(plot = plot_silhouette,path = here::here('output/figures'), filename = 'silhouette_plot.jpg')
+
+
+## Gap statistic
 plot_gap_stat <-
   fviz_nbclust(data_cluster_wis, 
                kmeans, 
                nstart = 25,  
-               print.summary = T, 
+               print.summary = TRUE, 
                method = "gap_stat", 
                nboot = 500)  +
-   labs(subtitle = "k-Means Clustering: Gap statistic method")
+   labs(title = "Gap stat doesn't find a solution",
+        subtitle = "The greatest gap stat is for 1 cluster")
 
-ggsave(plot = plot_gap_stat,
-       path = here::here('output/figures'),
-       filename = 'gap_stat_plot.jpg'
-)
+ggsave(plot = plot_gap_stat,path = here::here('output/figures'), filename = 'gap_stat_plot.jpg')
 
-## Gap statistic suggests 1 cluster....which isn't really a cluster now is it
-## Basically, this is an inability to reject the null hypo that the data 
-## clusters into latent groups. 
+
+
 
 
 # -------------------------------------------------------------------------
