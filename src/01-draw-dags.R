@@ -4,60 +4,8 @@
 library(dagitty)
 library(ggdag)
 
-
-# 1. Basic DAG ---------------------------------------------------------------
-dag_basic <- 
-  
-  dagify('Reint' ~ 'ID',
-         exposure = 'ID', 
-         outcome = 'Reint')
-
-
-ggdag::tidy_dagitty(dag_basic)
-
-coordinates(dag_basic) <- list(
-  x = c(ID = 0, Reint = 1),
-  y = c(
-    Reint = 1,
-    ID = 1
-  )
-)
-
-(plot_basic <-
-    ggdag(dag_basic) +
-    geom_dag_point(fill = 'white', color = 'white') +
-    geom_dag_edges() +
-    geom_dag_text(color = 'black', size = 5) +
-    theme_dag() +
-    labs(title = 'Graphical Model: Basic')
-)
-
-ggsave(here::here('output/figures/graphical-models/dag_basic.jpeg'),
-       plot = plot_basic)
-
-adjustmentSets(dag_basic)
-
-(plot_basic_adj_set <- 
-    ggdag_adjustment_set(dag_basic) + 
-    theme_dag() +
-    labs(title = 'Graphical Model: Basic')
-)
-
-
-
-ggsave(here::here('output/figures/graphical-models/dag_basic_adj_set.jpeg'))
-
-
-
-
-
-
-
-
-
-
-# 2. Antecents ---------------------------------------------------------------
-dag_2 <- 
+# 1. Antecents ---------------------------------------------------------------
+dag_1 <- 
   
   dagify('Reint' ~ 'ID' + 'Race' + 'Sex' + 'Officer' + 'Era' + 'Deploy' + 'Branch', 
          'ID' ~ 'Race' + 'Sex'+ 'Officer' + 'Era' + 'Deploy' + 'Branch' + 'Family' + 'YearsSrv',
@@ -67,9 +15,9 @@ dag_2 <-
          outcome = 'Reint')
 
 
-ggdag::tidy_dagitty(dag_2)
+ggdag::tidy_dagitty(dag_1)
 
-coordinates(dag_2) <- list(
+coordinates(dag_1) <- list(
   x = c(ID = 0, YearsSrv = 0, Family = 0, Era = .35, Race = .4, Officer = .5, Branch = .5, Sex = .6, Deploy = .65, Reint = 1),
   y = c(
     Reint = 1,
@@ -85,8 +33,8 @@ coordinates(dag_2) <- list(
   )
 )
 
-(plot_dag_2 <-
-    ggdag(dag_2) +
+(plot_dag_1 <-
+    ggdag(dag_1) +
     geom_dag_point(fill = 'white', color = 'white') +
     geom_dag_edges() +
     geom_dag_text(color = 'black', size = 5) +
@@ -94,18 +42,22 @@ coordinates(dag_2) <- list(
     labs(title = "Graphical Model: Antecedents")
 )
 
-ggsave(here::here('output/figures/graphical-models/dag_2.jpeg'),
-       plot = plot_dag_2)
+ggsave(here::here('output/dag_1.jpeg'),
+       plot = plot_dag_1,
+       width = 6, 
+       height = 6)
 
-adjustmentSets(dag_2)
+adjustmentSets(dag_1)
 
-(plot_dag_2_adj_set <- 
-    ggdag_adjustment_set(dag_2) + 
+(plot_dag_1_adj_set <- 
+    ggdag_adjustment_set(dag_1) + 
     theme_dag() +
     labs(title = 'Graphical Model')
 )
 
-ggsave(here::here('output/figures/graphical-models/dag_2_adj_set.jpeg'))
+ggsave(here::here('output/dag_1_adj.jpeg'),
+       width = 6, 
+       height = 6)
 
 
 

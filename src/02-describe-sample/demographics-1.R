@@ -1,8 +1,3 @@
-
-
-
-
-
 demographics_1 <-
   bind_rows( 
     
