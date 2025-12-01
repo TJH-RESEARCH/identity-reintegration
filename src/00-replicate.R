@@ -31,8 +31,13 @@ source(here::here("src/03-examine-measures/combine-reliability.R"))
 # Examine Variables -------------------------------------------------------
 
 
+
 # Modelling ---------------------------------------------------------------
 
+
+
+# Save session info -------------------------------------------------------
+source(here::here("src/session-info.R"))
 
 
 
